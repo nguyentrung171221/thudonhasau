@@ -1,0 +1,8 @@
+{
+  "name": "Thuê đồ nhà Sâu - Cho thuê máy ảnh Vĩnh Yên & Hà Nội",
+  "description": "Website cho thuê máy ảnh Canon EOS R50 và Fujifilm X-T20 chính hãng tại Vĩnh Yên (Vĩnh Phúc) và Hà Nội. Giá thuê minh bạch, đầy đủ phụ kiện, giao nhận tận nơi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
