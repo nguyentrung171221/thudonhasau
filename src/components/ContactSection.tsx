@@ -98,7 +98,7 @@ export const ContactSection: React.FC = () => {
                         <Facebook className="w-4 h-4 fill-white" />
                       </div>
                       <div>
-                        <span className="text-[10px] text-blue-800 font-semibold block">Tư vấn viên {idx + 1}</span>
+                        <span className="text-[10px] text-blue-800 font-semibold block">{idx === 0 ? 'Facebook chính' : 'Facebook phụ'}</span>
                         <span className="font-bold text-stone-900 text-xs sm:text-sm">{fb.name}</span>
                       </div>
                     </div>

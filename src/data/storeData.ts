@@ -16,8 +16,8 @@ export const STORE_INFO: StoreInfo = {
   phones: ['0981 225 634'],
   zaloPhones: ['0981 225 634'],
   facebookAccounts: [
-    { name: 'Phương Nguyễn (Facebook chính)', url: 'https://www.facebook.com/phuong.nguyen.139428' },
-    { name: 'Phương Nguyễn (Facebook phụ)', url: 'https://www.facebook.com/phuong.nguyn.184857' }
+    { name: 'Thuê Đồ Nhà Sâu', url: 'https://www.facebook.com/phuong.nguyen.139428' },
+    { name: 'Phuong Nguyn', url: 'https://www.facebook.com/phuong.nguyn.184857' }
   ],
   email: 'Trantienky666@gmail.com',
   locations: [
