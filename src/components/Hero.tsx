@@ -21,15 +21,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onScrollToPrice }) =>
           <div className="lg:col-span-7 text-center lg:text-left space-y-6">
             
             {/* Top Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-100/80 border border-rose-200 text-rose-700 text-xs font-semibold tracking-wide shadow-sm backdrop-blur-sm">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-100/80 border border-rose-200 text-rose-700 text-xs font-medium shadow-sm backdrop-blur-sm">
               <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
               <span>Dịch vụ cho thuê máy ảnh uy tín & thân thiện</span>
               <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-rose-400"></span>
-              <span className="hidden sm:inline font-bold text-rose-800">Vĩnh Yên, Vĩnh Phúc</span>
+              <span className="hidden sm:inline font-semibold text-rose-800">Vĩnh Yên, Vĩnh Phúc</span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-stone-900 leading-[1.15] tracking-tight">
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-semibold text-stone-900 leading-[1.15] tracking-tight">
               Thuê máy ảnh tại <br className="hidden sm:inline" />
               <span className="bg-gradient-to-r from-rose-600 via-rose-500 to-amber-600 bg-clip-text text-transparent italic font-normal">
                 Vĩnh Yên
@@ -37,7 +37,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onScrollToPrice }) =>
             </h1>
 
             {/* Slogan & Subtitle */}
-            <div className="flex items-center justify-center lg:justify-start gap-2 text-rose-600 font-serif text-2xl md:text-3xl font-medium italic">
+            <div className="flex items-center justify-center lg:justify-start gap-2 text-rose-600 font-serif text-2xl md:text-3xl font-medium italic tracking-tight">
               <Heart className="w-5 h-5 text-rose-400 fill-rose-300 inline" />
               “{STORE_INFO.slogan}”
             </div>
@@ -51,7 +51,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onScrollToPrice }) =>
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <button
                 onClick={onScrollToPrice}
-                className="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-white border border-rose-200 text-stone-800 font-bold text-sm shadow-sm hover:shadow-md hover:bg-rose-50/50 hover:border-rose-300 transition-all flex items-center justify-center gap-2 group cursor-pointer"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-white border border-rose-200 text-stone-800 font-semibold text-sm shadow-sm hover:shadow-md hover:bg-rose-50/50 hover:border-rose-300 transition-all flex items-center justify-center gap-2 group cursor-pointer"
               >
                 <Tag className="w-4 h-4 text-rose-500 group-hover:scale-110 transition-transform" />
                 Xem bảng giá
@@ -59,7 +59,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onScrollToPrice }) =>
 
               <button
                 onClick={() => onOpenBooking()}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-rose-500 via-rose-400 to-amber-400 hover:from-rose-600 hover:to-amber-500 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 group cursor-pointer"
+                className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-rose-500 via-rose-400 to-amber-400 hover:from-rose-600 hover:to-amber-500 text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 group cursor-pointer"
               >
                 <Calendar className="w-4 h-4 group-hover:scale-110 transition-transform" />
                 Đặt lịch ngay
@@ -72,8 +72,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onScrollToPrice }) =>
               <div className="p-3 bg-white/80 rounded-xl border border-rose-100 flex items-start gap-2.5 shadow-xs max-w-md">
                 <MapPin className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-xs font-bold text-stone-900">Địa chỉ nhận máy</p>
-                  <p className="text-[11px] text-stone-500">KCN Thăng Long 3 Vĩnh Phúc, Xã Thiện Kế, Bình Xuyên, Phú Thọ</p>
+                  <p className="text-xs font-semibold text-stone-900">Địa chỉ nhận máy</p>
+                  <p className="text-[11px] text-stone-500 font-normal">KCN Thăng Long 3 Vĩnh Phúc, Xã Thiện Kế, Bình Xuyên, Phú Thọ</p>
                 </div>
               </div>
             </div>
@@ -97,21 +97,21 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onScrollToPrice }) =>
                 {/* Floating Overlay Badge on Image */}
                 <div className="absolute bottom-6 left-6 right-6 p-4 bg-white/90 backdrop-blur-md rounded-2xl border border-white/80 shadow-lg text-stone-800">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-bold text-rose-600 uppercase tracking-wider flex items-center gap-1">
-                      <Camera className="w-3.5 h-3.5" /> 2 Dòng máy sẵn có
+                    <span className="text-xs font-semibold text-rose-600 flex items-center gap-1">
+                      <Camera className="w-3.5 h-3.5" /> 2 dòng máy sẵn có
                     </span>
-                    <span className="text-[11px] font-semibold bg-emerald-100 text-emerald-700 px-2.5 py-0.5 rounded-full">
+                    <span className="text-[11px] font-medium bg-emerald-100 text-emerald-700 px-2.5 py-0.5 rounded-full">
                       ● Đang còn lịch
                     </span>
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-xs font-medium text-stone-700">
                     <div className="p-2 bg-rose-50/80 rounded-xl border border-rose-100 flex items-center justify-between">
-                      <span className="font-bold text-stone-900">Canon EOS R50</span>
-                      <span className="text-rose-600 font-bold">160k/6h</span>
+                      <span className="font-serif font-semibold text-stone-900 text-sm">Canon EOS R50</span>
+                      <span className="text-rose-600 font-medium">160k/6h</span>
                     </div>
                     <div className="p-2 bg-rose-50/80 rounded-xl border border-rose-100 flex items-center justify-between">
-                      <span className="font-bold text-stone-900">Fujifilm X-T20</span>
-                      <span className="text-rose-600 font-bold">170k/6h</span>
+                      <span className="font-serif font-semibold text-stone-900 text-sm">Fujifilm X-T20</span>
+                      <span className="text-rose-600 font-medium">170k/6h</span>
                     </div>
                   </div>
                 </div>

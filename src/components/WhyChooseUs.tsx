@@ -20,10 +20,10 @@ export const WhyChooseUs: React.FC = () => {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-bold uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Lý Do Lựa Chọn
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-semibold">
+            <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Lý do lựa chọn
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-stone-900">
             Vì Sao Khách Hàng Yêu Thích Thuê Đồ Nhà Sâu?
           </h2>
           <p className="text-base text-stone-600 font-normal">
@@ -42,7 +42,7 @@ export const WhyChooseUs: React.FC = () => {
                 {iconsMap[item.iconName] || <Heart className="w-6 h-6 text-rose-500" />}
               </div>
 
-              <h3 className="font-serif font-bold text-stone-900 text-lg group-hover:text-rose-600 transition-colors">
+              <h3 className="font-serif font-semibold tracking-tight text-stone-900 text-lg group-hover:text-rose-600 transition-colors">
                 {item.title}
               </h3>
 

@@ -35,7 +35,7 @@ export const Footer: React.FC = () => {
                   <Camera className="w-5 h-5" />
                 </div>
               </div>
-              <span className="font-serif text-2xl font-bold text-white tracking-tight flex items-center gap-1.5">
+              <span className="font-serif text-2xl font-semibold text-white tracking-tight flex items-center gap-1.5">
                 {STORE_INFO.brandName}
                 <Sparkles className="w-4 h-4 text-amber-400" />
               </span>
@@ -52,8 +52,8 @@ export const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="font-serif font-bold text-white text-base">Menu Nhanh</h4>
-            <ul className="space-y-2 text-xs font-medium text-stone-400">
+            <h4 className="font-serif font-semibold text-white text-base tracking-tight">Menu Nhanh</h4>
+            <ul className="space-y-2 text-xs font-normal text-stone-400">
               <li>
                 <a href="#trang-chu" onClick={scrollToSection('trang-chu')} className="hover:text-rose-400 transition-colors">
                   Trang chủ
@@ -89,12 +89,12 @@ export const Footer: React.FC = () => {
 
           {/* Contact Details */}
           <div className="lg:col-span-3 space-y-3">
-            <h4 className="font-serif font-bold text-white text-base">Liên Hệ Trực Tiếp</h4>
-            <div className="space-y-2 text-xs text-stone-400">
+            <h4 className="font-serif font-semibold text-white text-base tracking-tight">Liên Hệ Trực Tiếp</h4>
+            <div className="space-y-2 text-xs text-stone-400 font-normal">
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-rose-400 shrink-0" />
                 <span>
-                  Hotline / Zalo: <a href={`tel:${STORE_INFO.phones[0].replace(/\s+/g, '')}`} className="text-white font-bold hover:underline">{STORE_INFO.phones[0]}</a>
+                  Hotline / Zalo: <a href={`tel:${STORE_INFO.phones[0].replace(/\s+/g, '')}`} className="text-white font-semibold hover:underline">{STORE_INFO.phones[0]}</a>
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -104,7 +104,7 @@ export const Footer: React.FC = () => {
                 </span>
               </div>
               <div className="pt-1 space-y-1">
-                <span className="text-stone-300 font-semibold block flex items-center gap-1.5">
+                <span className="text-stone-300 font-medium block flex items-center gap-1.5">
                   <Facebook className="w-3.5 h-3.5 text-blue-400 fill-blue-400" /> Facebook cá nhân:
                 </span>
                 {STORE_INFO.facebookAccounts.map((fb, idx) => (
@@ -125,7 +125,7 @@ export const Footer: React.FC = () => {
 
           {/* Locations */}
           <div className="lg:col-span-3 space-y-3">
-            <h4 className="font-serif font-bold text-white text-base">Địa Điểm Nhận Máy</h4>
+            <h4 className="font-serif font-semibold text-white text-base tracking-tight">Địa Điểm Nhận Máy</h4>
             <div className="space-y-2.5 text-xs text-stone-400">
               {STORE_INFO.locations.map((loc) => (
                 <div key={loc.id} className="flex items-start gap-2">

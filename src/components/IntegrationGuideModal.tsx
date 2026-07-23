@@ -22,10 +22,10 @@ export const IntegrationGuideModal: React.FC<IntegrationGuideModalProps> = ({ is
               <BookOpen className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-serif font-bold text-xl text-stone-900">
+              <h3 className="font-serif font-semibold text-xl tracking-tight text-stone-900">
                 Hướng Dẫn Tùy Chỉnh & Kết Nối Backend
               </h3>
-              <p className="text-xs text-stone-500">
+              <p className="text-xs text-stone-500 font-normal">
                 Tài liệu kỹ thuật và vị trí chỉnh sửa dữ liệu cửa hàng
               </p>
             </div>

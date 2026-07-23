@@ -17,11 +17,11 @@ export const RentalProcess: React.FC = () => {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-bold uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5" /> Quy Trình Đơn Giản
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-semibold">
+            <Sparkles className="w-3.5 h-3.5" /> Quy trình đơn giản
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900">
-            5 Bước Thuê Máy Anh Nhanh Gọn
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-stone-900">
+            5 Bước Thuê Máy Ảnh Nhanh Gọn
           </h2>
           <p className="text-base text-stone-600 font-normal">
             Quy trình làm việc minh bạch, chu đáo, hỗ trợ tối đa cho khách hàng lần đầu trải nghiệm máy ảnh.
@@ -37,7 +37,7 @@ export const RentalProcess: React.FC = () => {
             >
               {/* Step Number Badge */}
               <div className="flex items-center justify-between mb-4">
-                <span className="w-10 h-10 rounded-2xl bg-white shadow-2xs border border-rose-100 flex items-center justify-center font-serif font-bold text-lg text-rose-600 group-hover:bg-rose-500 group-hover:text-white transition-colors">
+                <span className="w-10 h-10 rounded-2xl bg-white shadow-2xs border border-rose-100 flex items-center justify-center font-serif font-semibold text-lg text-rose-600 group-hover:bg-rose-500 group-hover:text-white transition-colors">
                   0{step.stepNumber}
                 </span>
                 <div className="p-2 bg-rose-100/50 rounded-xl">
@@ -47,7 +47,7 @@ export const RentalProcess: React.FC = () => {
 
               {/* Title & Description */}
               <div className="space-y-2 flex-1">
-                <h3 className="font-serif font-bold text-stone-900 text-lg group-hover:text-rose-600 transition-colors">
+                <h3 className="font-serif font-semibold tracking-tight text-stone-900 text-lg group-hover:text-rose-600 transition-colors">
                   {step.title}
                 </h3>
                 <p className="text-xs text-stone-600 leading-relaxed">

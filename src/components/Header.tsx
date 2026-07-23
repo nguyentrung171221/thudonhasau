@@ -58,7 +58,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenHistory, ac
               </div>
             </div>
             <div>
-              <div className="font-serif text-xl md:text-2xl font-bold tracking-tight text-stone-900 group-hover:text-rose-600 transition-colors flex items-center gap-1.5">
+              <div className="font-serif text-xl md:text-2xl font-semibold tracking-tight text-stone-900 group-hover:text-rose-600 transition-colors flex items-center gap-1.5">
                 {STORE_INFO.brandName}
                 <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-300 inline" />
               </div>

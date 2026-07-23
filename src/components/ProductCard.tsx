@@ -27,7 +27,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent" />
 
         {/* Brand Tag */}
-        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-stone-900 border border-white/80 shadow-xs flex items-center gap-1">
+        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-stone-900 border border-white/80 shadow-xs flex items-center gap-1">
           <Sparkles className="w-3 h-3 text-rose-500 fill-rose-300" />
           {product.brand}
         </div>
@@ -35,18 +35,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {/* Status Badge */}
         <div className="absolute top-4 right-4">
           {product.status === 'available' && (
-            <span className="bg-emerald-500/90 text-white text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-sm border border-emerald-300/40 shadow-xs flex items-center gap-1">
+            <span className="bg-emerald-500/90 text-white text-[11px] font-medium px-3 py-1 rounded-full backdrop-blur-sm border border-emerald-300/40 shadow-xs flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
               Còn máy
             </span>
           )}
           {product.status === 'booked' && (
-            <span className="bg-amber-500/90 text-white text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-sm shadow-xs">
+            <span className="bg-amber-500/90 text-white text-[11px] font-medium px-3 py-1 rounded-full backdrop-blur-sm shadow-xs">
               Đã được đặt
             </span>
           )}
           {product.status === 'maintenance' && (
-            <span className="bg-stone-500/90 text-white text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-sm shadow-xs">
+            <span className="bg-stone-500/90 text-white text-[11px] font-medium px-3 py-1 rounded-full backdrop-blur-sm shadow-xs">
               Bảo trì
             </span>
           )}
@@ -55,10 +55,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {/* Lowest Price Overlay */}
         <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-white">
           <div>
-            <span className="text-[11px] text-rose-200 uppercase font-semibold tracking-wider block">
+            <span className="text-[11px] text-rose-200 font-medium block">
               Giá thuê tốt nhất
             </span>
-            <span className="text-2xl font-bold font-serif text-white">
+            <span className="text-2xl font-semibold font-serif text-white tracking-tight">
               chỉ {product.prices[0].formattedPrice}
             </span>
             <span className="text-xs text-rose-100 font-medium"> / 6 tiếng</span>
@@ -71,7 +71,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         
         {/* Title & Short Description */}
         <div>
-          <h3 className="font-serif text-2xl font-bold text-stone-900 mb-2 group-hover:text-rose-600 transition-colors">
+          <h3 className="font-serif text-2xl font-semibold tracking-tight text-stone-900 mb-2 group-hover:text-rose-600 transition-colors">
             {product.name}
           </h3>
 
@@ -94,11 +94,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Pricing Table Tier Grid */}
         <div className="bg-rose-50/50 rounded-2xl p-3.5 border border-rose-100/80">
-          <div className="text-[11px] font-bold text-rose-800 uppercase tracking-wider mb-2 flex items-center justify-between">
+          <div className="text-[11px] font-semibold text-rose-800 mb-2 flex items-center justify-between">
             <span className="flex items-center gap-1">
               <Clock className="w-3 h-3 text-rose-500" /> Bảng giá theo thời gian:
             </span>
-            <span className="text-[10px] font-semibold text-rose-600 bg-rose-100 px-2 py-0.5 rounded-full">
+            <span className="text-[10px] font-medium text-rose-600 bg-rose-100 px-2 py-0.5 rounded-full">
               Cam kết không tăng giá
             </span>
           </div>
@@ -110,7 +110,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 className="bg-white p-2 rounded-xl border border-rose-100 flex items-center justify-between shadow-2xs"
               >
                 <span className="text-stone-600 font-medium">{tier.durationLabel}</span>
-                <span className="font-bold text-stone-900">{tier.formattedPrice}</span>
+                <span className="font-semibold text-stone-900">{tier.formattedPrice}</span>
               </div>
             ))}
           </div>
@@ -118,7 +118,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Included Accessories Checklist */}
         <div>
-          <div className="text-xs font-bold text-stone-800 mb-2 flex items-center gap-1">
+          <div className="text-xs font-semibold text-stone-800 mb-2 flex items-center gap-1">
             <CheckCircle2 className="w-3.5 h-3.5 text-rose-500" /> Phụ kiện đi kèm 100% đầy đủ:
           </div>
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-[11px] text-stone-600">

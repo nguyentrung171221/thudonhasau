@@ -15,10 +15,10 @@ export const FAQ: React.FC = () => {
         
         {/* Header */}
         <div className="text-center mb-14 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-bold uppercase tracking-wider">
-            <HelpCircle className="w-3.5 h-3.5" /> Giải Đáp Thắc Mắc
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-semibold">
+            <HelpCircle className="w-3.5 h-3.5" /> Giải đáp thắc mắc
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-stone-900">
             Câu Hỏi Thường Gặp
           </h2>
           <p className="text-base text-stone-600 font-normal">
@@ -41,10 +41,10 @@ export const FAQ: React.FC = () => {
               >
                 <button
                   onClick={() => toggleQuestion(item.id)}
-                  className="w-full p-5 text-left font-serif font-bold text-stone-900 text-base sm:text-lg flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
+                  className="w-full p-5 text-left font-serif font-semibold tracking-tight text-stone-900 text-base sm:text-lg flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
                 >
                   <span className="flex items-center gap-3">
-                    <span className="w-6 h-6 rounded-full bg-rose-100 text-rose-700 text-xs font-bold flex items-center justify-center shrink-0 font-sans">
+                    <span className="w-6 h-6 rounded-full bg-rose-100 text-rose-700 text-xs font-semibold flex items-center justify-center shrink-0 font-sans">
                       {item.id}
                     </span>
                     <span>{item.question}</span>

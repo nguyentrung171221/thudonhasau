@@ -35,10 +35,10 @@ export const BookingHistoryModal: React.FC<BookingHistoryModalProps> = ({ isOpen
               <ReceiptText className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-serif font-bold text-xl text-stone-900">
+              <h3 className="font-serif font-semibold text-xl tracking-tight text-stone-900">
                 Đơn Đặt Lịch Đã Lưu
               </h3>
-              <p className="text-xs text-stone-500">
+              <p className="text-xs text-stone-500 font-normal">
                 Lưu trữ tạm thời trong bộ nhớ trình duyệt ({bookings.length} đơn)
               </p>
             </div>

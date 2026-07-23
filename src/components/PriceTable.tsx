@@ -16,10 +16,10 @@ export const PriceTable: React.FC<PriceTableProps> = ({ onBookNow }) => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-bold uppercase tracking-wider">
-            <Tag className="w-3.5 h-3.5" /> Bảng Giá Niêm Yết
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-semibold">
+            <Tag className="w-3.5 h-3.5" /> Bảng giá niêm yết
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-stone-900">
             Bảng Giá Cho Thuê Minh Bạch
           </h2>
           <p className="text-base text-stone-600 font-normal">
@@ -33,16 +33,16 @@ export const PriceTable: React.FC<PriceTableProps> = ({ onBookNow }) => {
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-rose-50/70 border-b border-rose-100">
-                  <th className="p-5 font-serif text-lg font-bold text-stone-900 w-1/3 min-w-[200px]">
+                  <th className="p-5 font-serif text-lg font-semibold tracking-tight text-stone-900 w-1/3 min-w-[200px]">
                     Thời Gian Thuê
                   </th>
                   <th className="p-5 text-center w-1/3 min-w-[240px] bg-rose-100/40 border-x border-rose-100">
-                    <div className="font-serif text-xl font-bold text-stone-900">{canon.name}</div>
-                    <span className="text-xs text-rose-600 font-semibold">Công nghệ mới • Lấy nét mắt</span>
+                    <div className="font-serif text-xl font-semibold tracking-tight text-stone-900">{canon.name}</div>
+                    <span className="text-xs text-rose-600 font-medium">Công nghệ mới • Lấy nét mắt</span>
                   </th>
                   <th className="p-5 text-center w-1/3 min-w-[240px]">
-                    <div className="font-serif text-xl font-bold text-stone-900">{fuji.name}</div>
-                    <span className="text-xs text-rose-600 font-semibold">Cổ điển Retro • Màu phim đẹp</span>
+                    <div className="font-serif text-xl font-semibold tracking-tight text-stone-900">{fuji.name}</div>
+                    <span className="text-xs text-rose-600 font-medium">Cổ điển Retro • Màu phim đẹp</span>
                   </th>
                 </tr>
               </thead>
@@ -146,8 +146,8 @@ export const PriceTable: React.FC<PriceTableProps> = ({ onBookNow }) => {
 
                 {/* Action Row */}
                 <tr className="bg-rose-50/50">
-                  <td className="p-5 font-serif font-bold text-stone-900">
-                    Đặt Thuê Lịch Máy
+                  <td className="p-5 font-serif font-semibold tracking-tight text-stone-900">
+                    Đặt Thuê Máy Ảnh
                   </td>
                   <td className="p-5 text-center border-x border-rose-100">
                     <button

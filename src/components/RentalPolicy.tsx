@@ -9,10 +9,10 @@ export const RentalPolicy: React.FC = () => {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-bold uppercase tracking-wider">
-            <FileText className="w-3.5 h-3.5" /> Quy Định & Quyền Lợi
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-semibold">
+            <FileText className="w-3.5 h-3.5" /> Quy định & quyền lợi
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-stone-900">
             Chính Sách Thuê Máy Rõ Ràng
           </h2>
           <p className="text-base text-stone-600 font-normal">
@@ -26,10 +26,10 @@ export const RentalPolicy: React.FC = () => {
             <Lock className="w-6 h-6" />
           </div>
           <div className="space-y-1">
-            <h3 className="font-serif font-bold text-lg text-amber-950 flex items-center gap-2">
+            <h3 className="font-serif font-semibold text-lg text-amber-950 flex items-center gap-2">
               Bảo mật dữ liệu cá nhân khách hàng <ShieldCheck className="w-4 h-4 text-emerald-600" />
             </h3>
-            <p className="text-xs sm:text-sm text-stone-700 leading-relaxed font-medium">
+            <p className="text-xs sm:text-sm text-stone-700 leading-relaxed font-normal">
               Website của cửa hàng <strong>KHÔNG yêu cầu khách hàng tải ảnh CCCD trực tiếp lên mạng</strong> để tránh mọi rủi ro bảo mật thông tin cá nhân. Khách hàng chỉ cần xuất trình CCCD chính chủ trực tiếp khi tới nhận máy để đối chiếu.
             </p>
           </div>
@@ -48,17 +48,17 @@ export const RentalPolicy: React.FC = () => {
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 text-xs font-bold flex items-center justify-center">
+                  <span className="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 text-xs font-semibold flex items-center justify-center">
                     0{policy.id}
                   </span>
                   {policy.important && (
-                    <span className="text-[10px] uppercase font-extrabold px-2.5 py-0.5 rounded-full bg-rose-600 text-white">
+                    <span className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-rose-600 text-white">
                       Quan trọng
                     </span>
                   )}
                 </div>
 
-                <h3 className="font-serif font-bold text-lg text-stone-900">
+                <h3 className="font-serif font-semibold tracking-tight text-lg text-stone-900">
                   {policy.title}
                 </h3>
 

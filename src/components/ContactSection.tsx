@@ -9,10 +9,10 @@ export const ContactSection: React.FC = () => {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-bold uppercase tracking-wider">
-            <Phone className="w-3.5 h-3.5" /> Thông Tin Lịch Trình
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-semibold">
+            <Phone className="w-3.5 h-3.5" /> Thông tin liên hệ
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-stone-900">
             Liên Hệ Thuê Đồ Nhà Sâu
           </h2>
           <p className="text-base text-stone-600 font-normal">
@@ -26,8 +26,8 @@ export const ContactSection: React.FC = () => {
           <div className="lg:col-span-5 bg-white p-8 rounded-3xl border border-rose-100 shadow-soft space-y-6">
             
             <div className="space-y-2 border-b border-rose-100 pb-6">
-              <span className="text-xs font-bold text-rose-600 uppercase tracking-wider block">Thương hiệu</span>
-              <h3 className="font-serif text-3xl font-bold text-stone-900 flex items-center gap-2">
+              <span className="text-xs font-semibold text-rose-600 block">Thương hiệu</span>
+              <h3 className="font-serif text-3xl font-semibold tracking-tight text-stone-900 flex items-center gap-2">
                 {STORE_INFO.brandName}
                 <Sparkles className="w-4 h-4 text-amber-500 fill-amber-300" />
               </h3>
@@ -41,7 +41,7 @@ export const ContactSection: React.FC = () => {
 
             {/* Phones & Zalo */}
             <div className="space-y-3">
-              <span className="text-xs font-bold text-stone-800 uppercase tracking-wider block">
+              <span className="text-xs font-semibold text-stone-800 block">
                 Điện thoại & Zalo tư vấn 24/7:
               </span>
               <div className="grid grid-cols-1 gap-3">
@@ -56,7 +56,7 @@ export const ContactSection: React.FC = () => {
                     </div>
                     <div>
                       <span className="text-[10px] text-stone-500 block">Hotline tư vấn</span>
-                      <span className="font-bold text-stone-900 text-sm">{phone}</span>
+                      <span className="font-semibold text-stone-900 text-sm">{phone}</span>
                     </div>
                   </a>
                 ))}
@@ -65,7 +65,7 @@ export const ContactSection: React.FC = () => {
 
             {/* Email */}
             <div className="space-y-2 pt-2">
-              <span className="text-xs font-bold text-stone-800 uppercase tracking-wider block">
+              <span className="text-xs font-semibold text-stone-800 block">
                 Email trao đổi công việc:
               </span>
               <a
@@ -75,13 +75,13 @@ export const ContactSection: React.FC = () => {
                 <div className="w-9 h-9 rounded-xl bg-white text-stone-700 flex items-center justify-center shadow-2xs group-hover:bg-rose-500 group-hover:text-white transition-colors">
                   <Mail className="w-4 h-4" />
                 </div>
-                <span className="font-semibold text-stone-900 text-xs sm:text-sm">{STORE_INFO.email}</span>
+                <span className="font-medium text-stone-900 text-xs sm:text-sm">{STORE_INFO.email}</span>
               </a>
             </div>
 
             {/* Facebook Contacts */}
             <div className="space-y-3 pt-1">
-              <span className="text-xs font-bold text-stone-800 uppercase tracking-wider flex items-center gap-1.5">
+              <span className="text-xs font-semibold text-stone-800 flex items-center gap-1.5">
                 <Facebook className="w-4 h-4 text-blue-600 fill-blue-600" /> Facebook cá nhân tư vấn:
               </span>
               <div className="grid grid-cols-1 gap-2.5">
@@ -98,8 +98,8 @@ export const ContactSection: React.FC = () => {
                         <Facebook className="w-4 h-4 fill-white" />
                       </div>
                       <div>
-                        <span className="text-[10px] text-blue-800 font-semibold block">{idx === 0 ? 'Facebook chính' : 'Facebook phụ'}</span>
-                        <span className="font-bold text-stone-900 text-xs sm:text-sm">{fb.name}</span>
+                        <span className="text-[10px] text-blue-800 font-medium block">{idx === 0 ? 'Facebook chính' : 'Facebook phụ'}</span>
+                        <span className="font-semibold text-stone-900 text-xs sm:text-sm">{fb.name}</span>
                       </div>
                     </div>
                     <ExternalLink className="w-4 h-4 text-blue-500 group-hover:text-blue-700 transition-colors mr-1" />
@@ -112,7 +112,7 @@ export const ContactSection: React.FC = () => {
             <div className="pt-2 space-y-2">
               <a
                 href={`tel:${STORE_INFO.phones[0].replace(/\s+/g, '')}`}
-                className="w-full py-3 px-4 rounded-xl bg-stone-900 text-white font-bold text-xs hover:bg-stone-800 transition-colors flex items-center justify-center gap-1.5"
+                className="w-full py-3 px-4 rounded-xl bg-stone-900 text-white font-semibold text-xs hover:bg-stone-800 transition-colors flex items-center justify-center gap-1.5"
               >
                 <Phone className="w-3.5 h-3.5 text-amber-400" />
                 Gọi hotline: {STORE_INFO.phones[0]}
@@ -122,7 +122,7 @@ export const ContactSection: React.FC = () => {
                 href={`https://zalo.me/${STORE_INFO.zaloPhones[0].replace(/\s+/g, '')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition-colors flex items-center justify-center gap-2"
+                className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-sm transition-colors flex items-center justify-center gap-2"
               >
                 <MessageCircle className="w-4 h-4" />
                 Liên hệ Zalo cửa hàng ngay
@@ -132,7 +132,7 @@ export const ContactSection: React.FC = () => {
                 href={STORE_INFO.facebookAccounts[0].url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-sm transition-colors flex items-center justify-center gap-2"
+                className="w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs shadow-sm transition-colors flex items-center justify-center gap-2"
               >
                 <Facebook className="w-4 h-4 fill-white" />
                 Nhắn tin Facebook ngay
@@ -145,7 +145,7 @@ export const ContactSection: React.FC = () => {
           <div className="lg:col-span-7 space-y-6">
             
             <div className="bg-white p-8 rounded-3xl border border-rose-100 shadow-soft space-y-6">
-              <h3 className="font-serif text-2xl font-bold text-stone-900 flex items-center gap-2">
+              <h3 className="font-serif text-2xl font-semibold tracking-tight text-stone-900 flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-rose-500" /> Địa Điểm Nhận Máy Chính Thức
               </h3>
 
@@ -156,16 +156,16 @@ export const ContactSection: React.FC = () => {
                     className="p-5 rounded-2xl bg-rose-50/50 border border-rose-100 hover:border-rose-200 transition-all space-y-3"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-serif font-bold text-stone-900 text-lg flex items-center gap-2">
+                      <span className="font-serif font-semibold tracking-tight text-stone-900 text-lg flex items-center gap-2">
                         <span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
                         Chi nhánh {loc.region}
                       </span>
-                      <span className="text-[11px] font-bold text-rose-700 bg-rose-100 px-3 py-1 rounded-full">
+                      <span className="text-[11px] font-semibold text-rose-700 bg-rose-100 px-3 py-1 rounded-full">
                         {loc.regionLabel}
                       </span>
                     </div>
 
-                    <p className="text-xs text-stone-700 font-medium leading-relaxed pl-4 border-l-2 border-rose-300">
+                    <p className="text-xs text-stone-700 font-normal leading-relaxed pl-4 border-l-2 border-rose-300">
                       {loc.address}
                     </p>
 
@@ -174,7 +174,7 @@ export const ContactSection: React.FC = () => {
                         href={loc.mapsSearchUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="py-2 px-4 rounded-xl bg-white border border-rose-200 text-stone-800 font-bold text-xs hover:bg-rose-100 transition-colors flex items-center gap-1.5 shadow-2xs"
+                        className="py-2 px-4 rounded-xl bg-white border border-rose-200 text-stone-800 font-semibold text-xs hover:bg-rose-100 transition-colors flex items-center gap-1.5 shadow-2xs"
                       >
                         <Navigation className="w-3.5 h-3.5 text-rose-500" />
                         Chỉ đường địa điểm {loc.region} trên Google Maps

@@ -145,13 +145,13 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
       {/* Form Header */}
       <div className="mb-8 text-center sm:text-left space-y-2">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-bold uppercase tracking-wider">
-          <Calendar className="w-3.5 h-3.5" /> Đặt Lịch Máy Ảnh
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-semibold">
+          <Calendar className="w-3.5 h-3.5" /> Đặt lịch máy ảnh
         </div>
-        <h2 className="font-serif text-3xl sm:text-4xl font-bold text-stone-900">
+        <h2 className="font-serif text-3xl sm:text-4xl font-semibold tracking-tight text-stone-900">
           Form Đặt Lịch Giữ Máy Trực Tuyến
         </h2>
-        <p className="text-xs sm:text-sm text-stone-600">
+        <p className="text-xs sm:text-sm text-stone-600 font-normal">
           Điền thông tin bên dưới để cửa hàng kiểm tra lịch máy trống và gọi lại tư vấn chốt đơn cho bạn trong vòng 15 - 30 phút.
         </p>
       </div>
@@ -163,7 +163,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
             <CheckCircle2 className="w-10 h-10" />
           </div>
           
-          <h3 className="font-serif text-2xl font-bold text-stone-900">
+          <h3 className="font-serif text-2xl font-semibold tracking-tight text-stone-900">
             Đã Ghi Nhận Yêu Cầu Đặt Lịch!
           </h3>
 
@@ -172,11 +172,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
           </p>
 
           <div className="p-4 bg-white rounded-2xl border border-emerald-100 text-xs text-stone-600 max-w-md mx-auto text-left space-y-1.5 shadow-2xs">
-            <div className="font-bold text-stone-900 border-b pb-1">Tóm tắt yêu cầu thuê:</div>
+            <div className="font-semibold text-stone-900 border-b pb-1">Tóm tắt yêu cầu thuê:</div>
             <div>• <strong>Máy thuê:</strong> {selectedProduct.name}</div>
             <div>• <strong>Nhận tại:</strong> {region} ({locationAddress})</div>
             <div>• <strong>Thời gian:</strong> {pickupDate} ({pickupTime}) đến {returnDate} ({returnTime})</div>
-            <div>• <strong>Dự kiến chi phí:</strong> <span className="text-rose-600 font-bold">{calculation.formattedPrice}</span></div>
+            <div>• <strong>Dự kiến chi phí:</strong> <span className="text-rose-600 font-semibold">{calculation.formattedPrice}</span></div>
           </div>
 
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -188,14 +188,14 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 setEmail('');
                 setNote('');
               }}
-              className="px-6 py-2.5 bg-white border border-stone-300 text-stone-800 text-xs font-bold rounded-xl hover:bg-stone-50 transition-colors"
+              className="px-6 py-2.5 bg-white border border-stone-300 text-stone-800 text-xs font-semibold rounded-xl hover:bg-stone-50 transition-colors"
             >
               Đặt đơn mới
             </button>
 
             <a
               href={`tel:${STORE_INFO.phones[0].replace(/\s+/g, '')}`}
-              className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl transition-colors flex items-center gap-1.5"
+              className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-xl transition-colors flex items-center gap-1.5"
             >
               Gọi hotline hỗ trợ ngay: {STORE_INFO.phones[0]}
             </a>
@@ -216,8 +216,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
           {/* Section 1: Selected Camera Choice */}
           <div className="space-y-3">
-            <label className="text-xs font-bold text-stone-800 uppercase tracking-wider block flex items-center gap-1">
-              <Camera className="w-4 h-4 text-rose-500" /> 1. Chọn Máy Ảnh Muốn Thuê <span className="text-rose-500">*</span>
+            <label className="text-xs font-semibold text-stone-800 block flex items-center gap-1">
+              <Camera className="w-4 h-4 text-rose-500" /> 1. Chọn máy ảnh muốn thuê <span className="text-rose-500">*</span>
             </label>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -237,9 +237,9 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                     className="w-14 h-14 object-cover rounded-xl border border-stone-200 shrink-0"
                   />
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-serif font-bold text-stone-900 text-sm truncate">{prod.name}</h4>
+                    <h4 className="font-serif font-semibold text-stone-900 text-sm truncate">{prod.name}</h4>
                     <p className="text-[11px] text-stone-500">
-                      Từ <span className="font-bold text-rose-600">{prod.prices[0].formattedPrice}</span> / 6 tiếng
+                      Từ <span className="font-semibold text-rose-600">{prod.prices[0].formattedPrice}</span> / 6 tiếng
                     </p>
                     <span className="inline-block mt-1 text-[10px] bg-white px-2 py-0.5 rounded-md border border-rose-100 text-stone-600 font-medium">
                       Đủ sạc + Thẻ nhớ + Adapter
@@ -252,23 +252,23 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
           {/* Section 2: Pickup Region & Address */}
           <div className="space-y-3 pt-2">
-            <label className="text-xs font-bold text-stone-800 uppercase tracking-wider block flex items-center gap-1">
-              <MapPin className="w-4 h-4 text-rose-500" /> 2. Khu Vực & Địa Điểm Nhận Máy <span className="text-rose-500">*</span>
+            <label className="text-xs font-semibold text-stone-800 block flex items-center gap-1">
+              <MapPin className="w-4 h-4 text-rose-500" /> 2. Khu vực & địa điểm nhận máy <span className="text-rose-500">*</span>
             </label>
 
             <div className="p-3.5 bg-rose-50/60 rounded-2xl border border-rose-200 text-xs text-stone-700 flex items-start gap-2.5">
               <MapPin className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
               <div>
-                <span className="font-bold text-stone-900 block">Khu vực Vĩnh Yên, Vĩnh Phúc</span>
-                <span className="text-stone-600">{locationAddress}</span>
+                <span className="font-semibold text-stone-900 block">Khu vực Vĩnh Yên, Vĩnh Phúc</span>
+                <span className="text-stone-600 font-normal">{locationAddress}</span>
               </div>
             </div>
           </div>
 
           {/* Section 3: Time & Plan */}
           <div className="space-y-3 pt-2">
-            <label className="text-xs font-bold text-stone-800 uppercase tracking-wider block flex items-center gap-1">
-              <Clock className="w-4 h-4 text-rose-500" /> 3. Thời Gian & Gói Thuê Dự Kiến <span className="text-rose-500">*</span>
+            <label className="text-xs font-semibold text-stone-800 block flex items-center gap-1">
+              <Clock className="w-4 h-4 text-rose-500" /> 3. Thời gian & gói thuê dự kiến <span className="text-rose-500">*</span>
             </label>
 
             {/* Plan selection buttons */}
@@ -285,11 +285,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   onClick={() => setRentalPlan(p.key as any)}
                   className={`p-2.5 rounded-2xl border-2 text-center transition-all cursor-pointer ${
                     rentalPlan === p.key
-                      ? 'border-rose-500 bg-rose-50 text-rose-700 font-bold'
+                      ? 'border-rose-500 bg-rose-50 text-rose-700 font-semibold'
                       : 'border-stone-200 bg-white text-stone-700 hover:border-rose-200'
                   }`}
                 >
-                  <span className="text-xs block">{p.label}</span>
+                  <span className="text-xs block font-medium">{p.label}</span>
                   <span className="text-[11px] font-semibold text-rose-600 block">{p.price}</span>
                 </button>
               ))}
@@ -300,40 +300,40 @@ export const BookingForm: React.FC<BookingFormProps> = ({
               
               {/* Pickup Date & Time */}
               <div className="bg-rose-50/40 p-3.5 rounded-2xl border border-rose-100 space-y-2">
-                <span className="text-xs font-bold text-stone-800 block">Ngày & Giờ Nhận Máy:</span>
+                <span className="text-xs font-semibold text-stone-800 block">Ngày & giờ nhận máy:</span>
                 <div className="grid grid-cols-2 gap-2">
                   <input
                     type="date"
                     value={pickupDate}
                     min={todayStr}
                     onChange={(e) => setPickupDate(e.target.value)}
-                    className="p-2 bg-white rounded-xl border border-stone-200 text-xs font-medium text-stone-800 focus:outline-none focus:border-rose-400"
+                    className="p-2 bg-white rounded-xl border border-stone-200 text-xs font-normal text-stone-800 focus:outline-none focus:border-rose-400"
                   />
                   <input
                     type="time"
                     value={pickupTime}
                     onChange={(e) => setPickupTime(e.target.value)}
-                    className="p-2 bg-white rounded-xl border border-stone-200 text-xs font-medium text-stone-800 focus:outline-none focus:border-rose-400"
+                    className="p-2 bg-white rounded-xl border border-stone-200 text-xs font-normal text-stone-800 focus:outline-none focus:border-rose-400"
                   />
                 </div>
               </div>
 
               {/* Return Date & Time */}
               <div className="bg-rose-50/40 p-3.5 rounded-2xl border border-rose-100 space-y-2">
-                <span className="text-xs font-bold text-stone-800 block">Ngày & Giờ Trả Máy:</span>
+                <span className="text-xs font-semibold text-stone-800 block">Ngày & giờ trả máy:</span>
                 <div className="grid grid-cols-2 gap-2">
                   <input
                     type="date"
                     value={returnDate}
                     min={pickupDate}
                     onChange={(e) => setReturnDate(e.target.value)}
-                    className="p-2 bg-white rounded-xl border border-stone-200 text-xs font-medium text-stone-800 focus:outline-none focus:border-rose-400"
+                    className="p-2 bg-white rounded-xl border border-stone-200 text-xs font-normal text-stone-800 focus:outline-none focus:border-rose-400"
                   />
                   <input
                     type="time"
                     value={returnTime}
                     onChange={(e) => setReturnTime(e.target.value)}
-                    className="p-2 bg-white rounded-xl border border-stone-200 text-xs font-medium text-stone-800 focus:outline-none focus:border-rose-400"
+                    className="p-2 bg-white rounded-xl border border-stone-200 text-xs font-normal text-stone-800 focus:outline-none focus:border-rose-400"
                   />
                 </div>
               </div>
@@ -343,8 +343,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
             {/* Automated Price & Duration Summary Box */}
             <div className="p-4 rounded-2xl bg-stone-900 text-white flex flex-col sm:flex-row items-center justify-between gap-3 shadow-md">
               <div>
-                <span className="text-[11px] text-stone-400 block uppercase font-semibold">
-                  Tổng thời gian & Giá dự kiến:
+                <span className="text-[11px] text-stone-400 block font-medium">
+                  Tổng thời gian & giá dự kiến:
                 </span>
                 <div className="text-sm font-medium text-rose-200">
                   {calculation.durationSummary} ({calculation.planName})
@@ -352,7 +352,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
               </div>
 
               <div className="text-center sm:text-right">
-                <span className="text-2xl font-serif font-bold text-amber-300 block">
+                <span className="text-2xl font-serif font-semibold text-amber-300 block tracking-tight">
                   {calculation.formattedPrice}
                 </span>
                 <span className="text-[10px] text-stone-400">Chưa bao gồm tiền cọc (Trao đổi khi liên hệ)</span>
@@ -363,13 +363,13 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
           {/* Section 4: Customer Contact Info */}
           <div className="space-y-3 pt-2">
-            <label className="text-xs font-bold text-stone-800 uppercase tracking-wider block flex items-center gap-1">
-              <FileText className="w-4 h-4 text-rose-500" /> 4. Thông Tin Người Thuê Máy <span className="text-rose-500">*</span>
+            <label className="text-xs font-semibold text-stone-800 block flex items-center gap-1">
+              <FileText className="w-4 h-4 text-rose-500" /> 4. Thông tin người thuê máy <span className="text-rose-500">*</span>
             </label>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="text-[11px] font-semibold text-stone-600 block mb-1">
+                <label className="text-[11px] font-medium text-stone-600 block mb-1">
                   Họ và tên khách hàng <span className="text-rose-500">*</span>
                 </label>
                 <input
@@ -377,13 +377,13 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   placeholder="Ví dụ: Nguyễn Thanh Hằng"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  className="w-full p-3 bg-white rounded-xl border border-stone-200 text-xs text-stone-800 focus:outline-none focus:border-rose-400"
+                  className="w-full p-3 bg-white rounded-xl border border-stone-200 text-xs font-normal text-stone-800 focus:outline-none focus:border-rose-400"
                   required
                 />
               </div>
 
               <div>
-                <label className="text-[11px] font-semibold text-stone-600 block mb-1">
+                <label className="text-[11px] font-medium text-stone-600 block mb-1">
                   Số điện thoại & Zalo <span className="text-rose-500">*</span>
                 </label>
                 <input
@@ -391,7 +391,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   placeholder="Ví dụ: 0981225634"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="w-full p-3 bg-white rounded-xl border border-stone-200 text-xs text-stone-800 focus:outline-none focus:border-rose-400"
+                  className="w-full p-3 bg-white rounded-xl border border-stone-200 text-xs font-normal text-stone-800 focus:outline-none focus:border-rose-400"
                   required
                 />
               </div>
@@ -399,7 +399,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="text-[11px] font-semibold text-stone-600 block mb-1">
+                <label className="text-[11px] font-medium text-stone-600 block mb-1">
                   Email (Không bắt buộc)
                 </label>
                 <input
@@ -407,12 +407,12 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   placeholder="Ví dụ: myemail@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full p-3 bg-white rounded-xl border border-stone-200 text-xs text-stone-800 focus:outline-none focus:border-rose-400"
+                  className="w-full p-3 bg-white rounded-xl border border-stone-200 text-xs font-normal text-stone-800 focus:outline-none focus:border-rose-400"
                 />
               </div>
 
               <div>
-                <label className="text-[11px] font-semibold text-stone-600 block mb-1">
+                <label className="text-[11px] font-medium text-stone-600 block mb-1">
                   Ghi chú thêm (Mục đích chụp, yêu cầu đặc biệt)
                 </label>
                 <input
@@ -420,7 +420,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   placeholder="Ví dụ: Cần lấy máy sớm hơn 15p, xin HDSD cho người mới..."
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
-                  className="w-full p-3 bg-white rounded-xl border border-stone-200 text-xs text-stone-800 focus:outline-none focus:border-rose-400"
+                  className="w-full p-3 bg-white rounded-xl border border-stone-200 text-xs font-normal text-stone-800 focus:outline-none focus:border-rose-400"
                 />
               </div>
             </div>
@@ -435,7 +435,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 onChange={(e) => setAgreedToPolicy(e.target.checked)}
                 className="mt-1 w-4 h-4 text-rose-600 rounded border-stone-300 focus:ring-rose-500"
               />
-              <span className="text-xs text-stone-700 leading-relaxed">
+              <span className="text-xs text-stone-700 leading-relaxed font-normal">
                 Tôi đã đọc và đồng ý với <strong>Chính sách thuê máy ảnh</strong> của Thuê đồ nhà Sâu (Xuất trình CCCD khi nhận máy, bảo quản thiết bị, đủ phụ kiện khi hoàn trả).
               </span>
             </label>
@@ -446,7 +446,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full py-4 rounded-2xl bg-gradient-to-r from-rose-500 via-rose-400 to-amber-400 hover:from-rose-600 hover:to-amber-500 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer ${
+              className={`w-full py-4 rounded-2xl bg-gradient-to-r from-rose-500 via-rose-400 to-amber-400 hover:from-rose-600 hover:to-amber-500 text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer ${
                 isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
               }`}
             >

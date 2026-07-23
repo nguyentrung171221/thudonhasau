@@ -73,7 +73,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 {product.statusLabel}
               </div>
 
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-stone-900 leading-tight">
+              <h2 className="font-serif text-3xl sm:text-4xl font-semibold tracking-tight text-stone-900 leading-tight">
                 {product.name}
               </h2>
 
@@ -96,14 +96,14 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
             {/* Quick Price Cards */}
             <div className="bg-white rounded-2xl p-4 border border-rose-100 shadow-2xs space-y-2">
-              <span className="text-xs font-bold text-stone-500 uppercase tracking-wider block">
+              <span className="text-xs font-semibold text-stone-600 block">
                 Bảng giá thuê chi tiết:
               </span>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {product.prices.map((p) => (
                   <div key={p.planKey} className="bg-rose-50/60 p-2 rounded-xl text-center border border-rose-100">
-                    <span className="text-[10px] text-stone-500 block">{p.durationLabel}</span>
-                    <span className="font-serif font-bold text-stone-900 text-sm">{p.formattedPrice}</span>
+                    <span className="text-[10px] text-stone-500 block font-medium">{p.durationLabel}</span>
+                    <span className="font-serif font-semibold text-stone-900 text-sm tracking-tight">{p.formattedPrice}</span>
                   </div>
                 ))}
               </div>
@@ -116,7 +116,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   onClose();
                   onBookNow(product.id);
                 }}
-                className="w-full sm:flex-1 py-3.5 px-6 rounded-2xl bg-gradient-to-r from-rose-500 via-rose-400 to-amber-400 hover:from-rose-600 hover:to-amber-500 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:flex-1 py-3.5 px-6 rounded-2xl bg-gradient-to-r from-rose-500 via-rose-400 to-amber-400 hover:from-rose-600 hover:to-amber-500 text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Calendar className="w-4 h-4" />
                 Đặt thuê máy này ngay
@@ -144,20 +144,20 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             
             <div className="space-y-3">
-              <h3 className="font-serif text-xl font-bold text-stone-900 flex items-center gap-2">
+              <h3 className="font-serif text-xl font-semibold tracking-tight text-stone-900 flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-rose-500" /> Giới thiệu chi tiết
               </h3>
-              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-normal">
                 {product.fullDesc}
               </p>
 
               {/* Technical specs summary */}
               <div className="bg-stone-50 p-4 rounded-2xl border border-stone-200/80 space-y-2 mt-4">
-                <span className="text-xs font-bold text-stone-700 block">Thông số kỹ thuật cơ bản:</span>
+                <span className="text-xs font-semibold text-stone-700 block">Thông số kỹ thuật cơ bản:</span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   {product.commonSpecs.map((spec, i) => (
                     <div key={i} className="flex items-center justify-between border-b border-stone-200/60 pb-1">
-                      <span className="text-stone-500">{spec.label}:</span>
+                      <span className="text-stone-500 font-normal">{spec.label}:</span>
                       <span className="font-semibold text-stone-900">{spec.value}</span>
                     </div>
                   ))}
@@ -169,10 +169,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             <div className="space-y-4">
               
               <div className="bg-rose-50/50 p-4 rounded-2xl border border-rose-100 space-y-2">
-                <h4 className="text-xs font-bold text-rose-800 uppercase tracking-wider flex items-center gap-1.5">
+                <h4 className="text-xs font-semibold text-rose-800 flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-rose-500" /> Điểm nổi bật nhất của máy:
                 </h4>
-                <ul className="space-y-1.5 text-xs text-stone-700">
+                <ul className="space-y-1.5 text-xs text-stone-700 font-normal">
                   {product.highlights.map((h, i) => (
                     <li key={i} className="flex items-start gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1 shrink-0"></span>
@@ -183,10 +183,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               </div>
 
               <div className="bg-amber-50/50 p-4 rounded-2xl border border-amber-100 space-y-2">
-                <h4 className="text-xs font-bold text-amber-900 uppercase tracking-wider flex items-center gap-1.5">
+                <h4 className="text-xs font-semibold text-amber-900 flex items-center gap-1.5">
                   <Heart className="w-4 h-4 text-amber-600 fill-amber-200" /> Phù hợp nhất cho nhu cầu:
                 </h4>
-                <ul className="space-y-1.5 text-xs text-stone-700">
+                <ul className="space-y-1.5 text-xs text-stone-700 font-normal">
                   {product.suitableFor.map((s, i) => (
                     <li key={i} className="flex items-start gap-2">
                       <ChevronRight className="w-3.5 h-3.5 text-amber-600 shrink-0 mt-0.5" />
