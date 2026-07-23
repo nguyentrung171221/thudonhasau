@@ -86,24 +86,24 @@ export const App: React.FC = () => {
         />
 
         {/* Product List Section (Only Canon R50 & Fujifilm X-T20) */}
-        <section id="thiet-bi" className="py-20 bg-white relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="thiet-bi" className="pt-6 pb-12 sm:pt-8 sm:pb-16 bg-white relative">
+          <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
             
             {/* Header */}
-            <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-              <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-bold uppercase tracking-wider">
-                <Camera className="w-3.5 h-3.5" /> Dòng Máy Hiện Có
+            <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10 space-y-2">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-semibold">
+                <Camera className="w-3.5 h-3.5" /> Dòng máy hiện có
               </div>
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900">
-                Danh Sách Máy Ảnh Cho Thuê
+              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-stone-900">
+                Danh sách máy ảnh cho thuê
               </h2>
-              <p className="text-base text-stone-600 font-normal">
+              <p className="text-xs sm:text-sm text-stone-600 font-normal">
                 Hai mẫu máy ảnh hot nhất, chụp ảnh sắc nét, màu sắc thơ mộng sẵn sàng cùng bạn ghi lại mọi khoảnh khắc đáng nhớ.
               </p>
             </div>
 
             {/* 2 Product Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
               {PRODUCTS.map((product) => (
                 <ProductCard
                   key={product.id}
@@ -115,20 +115,20 @@ export const App: React.FC = () => {
             </div>
 
             {/* Sub-banner for included items */}
-            <div className="mt-12 p-6 rounded-3xl bg-gradient-to-r from-rose-50 via-rose-100/50 to-amber-50 border border-rose-200 text-stone-800 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-2xs max-w-5xl mx-auto">
+            <div className="mt-8 p-5 rounded-2xl bg-gradient-to-r from-rose-50 via-rose-100/40 to-pink-50 border border-rose-200/80 text-stone-800 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-2xs max-w-5xl mx-auto">
               <div className="flex items-center gap-3 text-center sm:text-left">
-                <div className="w-10 h-10 rounded-2xl bg-white text-rose-500 flex items-center justify-center shrink-0 shadow-2xs">
+                <div className="w-9 h-9 rounded-xl bg-white text-rose-500 flex items-center justify-center shrink-0 shadow-2xs">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-serif font-bold text-base text-stone-900">Đầy đủ trọn bộ phụ kiện đi kèm</h4>
-                  <p className="text-xs text-stone-600">Thẻ nhớ tốc độ cao + Lens Kit + Sạc pin + Dây sạc + Đầu đọc thẻ chuyển ảnh điện thoại</p>
+                  <h4 className="font-serif font-semibold text-sm sm:text-base text-stone-900 tracking-tight">Đầy đủ trọn bộ phụ kiện đi kèm</h4>
+                  <p className="text-xs text-stone-600 font-normal">Thẻ nhớ tốc độ cao + Lens Kit + Sạc pin + Dây sạc + Đầu đọc thẻ chuyển ảnh điện thoại</p>
                 </div>
               </div>
 
               <button
                 onClick={() => handleOpenBooking()}
-                className="px-5 py-2.5 bg-stone-900 hover:bg-stone-800 text-white font-bold text-xs rounded-xl shadow-xs transition-colors shrink-0 cursor-pointer"
+                className="px-5 py-2.5 bg-stone-900 hover:bg-stone-800 text-white font-semibold text-xs rounded-xl shadow-xs transition-colors shrink-0 cursor-pointer"
               >
                 Đặt thuê ngay
               </button>

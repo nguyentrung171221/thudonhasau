@@ -146,7 +146,7 @@ export const ContactSection: React.FC = () => {
             
             <div className="bg-white p-8 rounded-3xl border border-rose-100 shadow-soft space-y-6">
               <h3 className="font-serif text-2xl font-semibold tracking-tight text-stone-900 flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-rose-500" /> Địa Điểm Nhận Máy Chính Thức
+                <MapPin className="w-5 h-5 text-rose-500" /> Địa điểm nhận máy chính thức
               </h3>
 
               <div className="space-y-4">
@@ -158,7 +158,7 @@ export const ContactSection: React.FC = () => {
                     <div className="flex items-center justify-between">
                       <span className="font-serif font-semibold tracking-tight text-stone-900 text-lg flex items-center gap-2">
                         <span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
-                        Chi nhánh {loc.region}
+                        Khu vực {loc.region}
                       </span>
                       <span className="text-[11px] font-semibold text-rose-700 bg-rose-100 px-3 py-1 rounded-full">
                         {loc.regionLabel}
