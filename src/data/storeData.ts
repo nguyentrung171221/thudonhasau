@@ -16,8 +16,8 @@ export const STORE_INFO: StoreInfo = {
   phones: ['0981 225 634'],
   zaloPhones: ['0981 225 634'],
   facebookAccounts: [
-    { name: 'Phương Nguyễn (Facebook 1)', url: 'https://www.facebook.com/phuong.nguyn.184857' },
-    { name: 'Phương Nguyễn (Facebook 2)', url: 'https://www.facebook.com/phuong.nguyen.139428' }
+    { name: 'Phương Nguyễn (Facebook chính)', url: 'https://www.facebook.com/phuong.nguyen.139428' },
+    { name: 'Phương Nguyễn (Facebook phụ)', url: 'https://www.facebook.com/phuong.nguyn.184857' }
   ],
   email: 'Trantienky666@gmail.com',
   locations: [
@@ -25,8 +25,8 @@ export const STORE_INFO: StoreInfo = {
       id: 'vinh-yen',
       region: 'Vĩnh Yên',
       regionLabel: 'Vĩnh Yên, Vĩnh Phúc',
-      address: 'Khu vực KCN Thăng Long Vĩnh Phúc, Vĩnh Yên, Vĩnh Phúc',
-      mapsSearchUrl: 'https://www.google.com/maps/search/?api=1&query=KCN+Th%C4%83ng+Long+V%C3%AEnh+Ph%C3%BAc+V%C3%AEnh+Y%C3%AAn+V%C3%AEnh+Ph%C3%BAc'
+      address: 'KCN Thăng Long 3 Vĩnh Phúc, Xã Thiện Kế, Bình Xuyên, Phú Thọ',
+      mapsSearchUrl: 'https://www.google.com/maps/search/?api=1&query=KCN+Th%C4%83ng+Long+3+V%C3%AEnh+Ph%C3%BAc+X%C3%A3+Thi%E1%BB%87n+K%E1%BA%BF+B%C3%ACnh+Xuy%C3%AAn+Ph%C3%BA+Th%E1%BB%8D'
     }
   ]
 };
@@ -286,13 +286,13 @@ export const FAQS: FAQItem[] = [
   },
   {
     id: 4,
-    question: 'Địa điểm nhận máy ở đâu tại Vĩnh Yên?',
-    answer: 'Bạn nhận máy tại khu vực KCN Thăng Long Vĩnh Phúc, Vĩnh Yên, Vĩnh Phúc. Vui lòng hẹn trước 15-30 phút để cửa hàng chuẩn bị máy đón bạn.'
+    question: 'Địa điểm nhận máy ở đâu?',
+    answer: 'Bạn nhận máy tại địa chỉ: KCN Thăng Long 3 Vĩnh Phúc, Xã Thiện Kế, Bình Xuyên, Phú Thọ. Vui lòng hẹn trước 15-30 phút để cửa hàng chuẩn bị máy đón bạn.'
   },
   {
     id: 5,
-    question: 'Tôi có thể nhận máy tại Vĩnh Yên không?',
-    answer: 'Có! Bạn có thể nhận máy tại địa điểm Vĩnh Yên: Khu vực KCN Thăng Long Vĩnh Phúc, Vĩnh Yên, Vĩnh Phúc.'
+    question: 'Tôi có thể nhận máy ở khu vực Vĩnh Yên / Bình Xuyên không?',
+    answer: 'Có! Bạn nhận máy trực tiếp tại điểm: KCN Thăng Long 3 Vĩnh Phúc, Xã Thiện Kế, Bình Xuyên, Phú Thọ.'
   },
   {
     id: 6,

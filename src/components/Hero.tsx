@@ -72,8 +72,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onScrollToPrice }) =>
               <div className="p-3 bg-white/80 rounded-xl border border-rose-100 flex items-start gap-2.5 shadow-xs max-w-md">
                 <MapPin className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-xs font-bold text-stone-900">Địa chỉ nhận máy Vĩnh Yên</p>
-                  <p className="text-[11px] text-stone-500">KCN Thăng Long Vĩnh Phúc, Vĩnh Yên, Vĩnh Phúc</p>
+                  <p className="text-xs font-bold text-stone-900">Địa chỉ nhận máy</p>
+                  <p className="text-[11px] text-stone-500">KCN Thăng Long 3 Vĩnh Phúc, Xã Thiện Kế, Bình Xuyên, Phú Thọ</p>
                 </div>
               </div>
             </div>
