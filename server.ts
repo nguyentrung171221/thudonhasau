@@ -1,14 +1,15 @@
+import "dotenv/config";
 import express from "express";
 import path from "path";
 import nodemailer from "nodemailer";
 import { createServer as createViteServer } from "vite";
 
 const app = express();
-const PORT = 3000;
+const PORT = parseInt(process.env.PORT || "3000", 10);
 
 app.use(express.json());
 
-// In-memory server backup store for bookings
+// In-memory backup store for bookings
 interface BookingRecord {
   id: string;
   createdAt: string;
@@ -29,6 +30,48 @@ interface BookingRecord {
 }
 
 const serverBookings: BookingRecord[] = [];
+
+// Helper function to create Nodemailer transporter
+function createSmtpTransporter() {
+  const smtpUser = (process.env.SMTP_USER || "trantienky666@gmail.com").trim();
+  const smtpPass = (process.env.SMTP_PASS || "ulesyiqeiraweuxf").trim().replace(/\s+/g, "");
+  const smtpHost = (process.env.SMTP_HOST || "smtp.gmail.com").trim();
+  const smtpPort = parseInt(process.env.SMTP_PORT || "465", 10);
+
+  if (smtpHost === "smtp.gmail.com" || smtpHost === "gmail") {
+    return {
+      transporter: nodemailer.createTransport({
+        service: "gmail",
+        auth: { user: smtpUser, pass: smtpPass },
+        tls: { rejectUnauthorized: false }
+      }),
+      smtpUser,
+      smtpPass
+    };
+  }
+
+  return {
+    transporter: nodemailer.createTransport({
+      host: smtpHost,
+      port: smtpPort,
+      secure: smtpPort === 465,
+      auth: { user: smtpUser, pass: smtpPass },
+      tls: { rejectUnauthorized: false }
+    }),
+    smtpUser,
+    smtpPass
+  };
+}
+
+// Non-blocking async SMTP check on boot (Does NOT stop app execution if it fails)
+try {
+  const { transporter } = createSmtpTransporter();
+  transporter.verify()
+    .then(() => console.log("[SMTP Boot Test] Connection to Gmail SMTP verified successfully."))
+    .catch((err: any) => console.warn("[SMTP Boot Warning] Could not connect to Gmail SMTP:", err?.message || "Unknown error"));
+} catch (err: any) {
+  console.warn("[SMTP Init Warning] Failed to initialize transporter on startup:", err?.message || "Unknown error");
+}
 
 // Helper to construct HTML email
 function buildBookingEmailHtml(booking: BookingRecord, targetEmail: string) {
@@ -107,9 +150,30 @@ function buildBookingEmailHtml(booking: BookingRecord, targetEmail: string) {
   `;
 }
 
-// API Health Check
+// 11. Endpoint GET /api/health (Không phụ thuộc SMTP)
 app.get("/api/health", (req, res) => {
-  res.json({ status: "ok", app: "Thuê đồ nhà Sâu", targetEmail: process.env.NOTIFICATION_EMAIL || "trantienky666@gmail.com" });
+  res.json({
+    success: true,
+    message: "Backend đang hoạt động"
+  });
+});
+
+// 12. Endpoint GET /api/email-health (Kiểm tra kết nối SMTP bằng transporter.verify, không làm ứng dụng bị dừng)
+app.get("/api/email-health", async (req, res) => {
+  try {
+    const { transporter } = createSmtpTransporter();
+    await transporter.verify();
+    res.json({
+      success: true,
+      message: "SMTP kết nối thành công"
+    });
+  } catch (error: any) {
+    const errMsg = (error?.message || "Unknown error").replace(/(pass|password|auth)=([^\s&]+)/gi, "$1=***");
+    res.json({
+      success: false,
+      message: `SMTP kết nối thất bại: ${errMsg}`
+    });
+  }
 });
 
 // API Get Bookings List
@@ -117,7 +181,7 @@ app.get("/api/bookings", (req, res) => {
   res.json({ success: true, count: serverBookings.length, bookings: serverBookings });
 });
 
-// API Send Booking Email
+// 9 & 10. API Send Booking Email (POST /api/send-booking-email)
 app.post("/api/send-booking-email", async (req, res) => {
   try {
     const {
@@ -138,7 +202,10 @@ app.post("/api/send-booking-email", async (req, res) => {
     } = req.body;
 
     if (!fullName || !phone || !productName) {
-      res.status(400).json({ success: false, message: "Thiếu thông tin bắt buộc (họ tên, SĐT, máy thuê)." });
+      res.status(400).json({
+        success: false,
+        message: "Thiếu thông tin bắt buộc (họ tên, SĐT, máy thuê)."
+      });
       return;
     }
 
@@ -163,20 +230,14 @@ app.post("/api/send-booking-email", async (req, res) => {
 
     serverBookings.unshift(newRecord);
 
-    const targetEmail = process.env.NOTIFICATION_EMAIL || "trantienky666@gmail.com";
-    const smtpUser = process.env.SMTP_USER || "trantienky666@gmail.com";
-    const smtpPass = process.env.SMTP_PASS || "ulesyiqeiraweuxf";
-    const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
-    const smtpPort = parseInt(process.env.SMTP_PORT || "465", 10);
-    const webhookUrl = process.env.WEBHOOK_URL;
+    const targetEmail = (process.env.NOTIFICATION_EMAIL || "trantienky666@gmail.com").trim();
 
-    let emailSent = false;
-    let emailError = "";
-
-    // 1. Optional Webhook (Tùy chọn - không bắt buộc)
-    if (webhookUrl) {
+    // 7. WEBHOOK_URL là tùy chọn. Nếu WEBHOOK_URL trống thì bỏ qua webhook.
+    // Không gọi fetch(), axios hoặc new URL() với chuỗi rỗng.
+    const rawWebhookUrl = (process.env.WEBHOOK_URL || "").trim();
+    if (rawWebhookUrl && (rawWebhookUrl.startsWith("http://") || rawWebhookUrl.startsWith("https://"))) {
       try {
-        await fetch(webhookUrl, {
+        await fetch(rawWebhookUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -185,112 +246,58 @@ app.post("/api/send-booking-email", async (req, res) => {
             booking: newRecord
           })
         });
-        console.log(`[WEBHOOK SUCCESS] Notification pushed to ${webhookUrl}`);
+        console.log(`[Webhook Pushed] Successfully sent booking notification to webhook.`);
       } catch (err: any) {
-        console.error("Webhook notification error (ignored):", err?.message || err);
+        console.warn("[Webhook Error (Ignored)]:", err?.message || err);
       }
     }
 
-    // 2. Main Email Delivery via Gmail SMTP (Nodemailer)
-    if (smtpUser && smtpPass) {
-      const cleanPass = smtpPass.trim().replace(/\s+/g, "");
-      const cleanUser = smtpUser.trim();
-      const mailRecipient = targetEmail + (email && email.trim() && email.trim() !== targetEmail ? `, ${email.trim()}` : '');
+    // Attempting Gmail SMTP delivery
+    const { transporter, smtpUser } = createSmtpTransporter();
+    const mailRecipient = targetEmail + (email && email.trim() && email.trim() !== targetEmail ? `, ${email.trim()}` : "");
 
-      const mailOptions = {
-        from: `"Thuê Đồ Nhà Sâu" <${cleanUser}>`,
-        to: mailRecipient,
-        subject: `[ĐƠN THUÊ MỚI ${newRecord.id}] ${fullName} - ${phone} (${productName})`,
-        html: buildBookingEmailHtml(newRecord, targetEmail)
-      };
+    const mailOptions = {
+      from: `"Thuê Đồ Nhà Sâu" <${smtpUser}>`,
+      to: mailRecipient,
+      subject: `[ĐƠN THUÊ MỚI ${newRecord.id}] ${fullName} - ${phone} (${productName})`,
+      html: buildBookingEmailHtml(newRecord, targetEmail)
+    };
 
-      // Method A: Try service: 'gmail'
-      try {
-        const transporterGmail = nodemailer.createTransport({
-          service: "gmail",
-          auth: {
-            user: cleanUser,
-            pass: cleanPass
-          },
-          tls: { rejectUnauthorized: false }
-        });
+    // 10. Chỉ trả success=true sau khi sendMail thực sự thành công.
+    try {
+      await transporter.sendMail(mailOptions);
+      console.log(`[SMTP SUCCESS] Booking email successfully delivered to ${mailRecipient}`);
 
-        await transporterGmail.sendMail(mailOptions);
-        emailSent = true;
-        console.log(`[SMTP SUCCESS - Gmail Service] Email sent to ${mailRecipient}`);
-      } catch (err1: any) {
-        console.warn("[SMTP Gmail Service Error]:", err1?.message || err1);
-        emailError = err1?.message || "Gmail Service Error";
-
-        // Method B: Try port 587 STARTTLS
-        try {
-          const transporter587 = nodemailer.createTransport({
-            host: "smtp.gmail.com",
-            port: 587,
-            secure: false,
-            auth: {
-              user: cleanUser,
-              pass: cleanPass
-            },
-            tls: { rejectUnauthorized: false }
-          });
-
-          await transporter587.sendMail(mailOptions);
-          emailSent = true;
-          console.log(`[SMTP SUCCESS - Port 587] Email sent to ${mailRecipient}`);
-        } catch (err2: any) {
-          console.warn("[SMTP Port 587 Error]:", err2?.message || err2);
-          emailError = err2?.message || err1?.message || "Port 587 Error";
-
-          // Method C: Try port 465 Direct SSL
-          try {
-            const transporter465 = nodemailer.createTransport({
-              host: "smtp.gmail.com",
-              port: 465,
-              secure: true,
-              auth: {
-                user: cleanUser,
-                pass: cleanPass
-              },
-              tls: { rejectUnauthorized: false }
-            });
-
-            await transporter465.sendMail(mailOptions);
-            emailSent = true;
-            console.log(`[SMTP SUCCESS - Port 465] Email sent to ${mailRecipient}`);
-          } catch (err3: any) {
-            console.error("[SMTP Port 465 Error]:", err3?.message || err3);
-            emailError = `Gửi email thất bại: ${err3?.message || err2?.message || err1?.message}`;
-          }
-        }
-      }
-    }
-
-    if (emailSent) {
       res.json({
         success: true,
         sent: true,
         bookingId: newRecord.id,
         targetEmail,
-        message: `Đã gửi thông báo đơn hàng thành công tới hòm thư ${targetEmail}`
+        message: `Đã gửi thông báo đơn hàng thành công tới email ${targetEmail}`
+      });
+      return;
+    } catch (mailErr: any) {
+      const cleanErrMsg = (mailErr?.message || "Lỗi kết nối Gmail SMTP").replace(/(pass|password|auth)=([^\s&]+)/gi, "$1=***");
+      console.error("[SMTP Send Error]:", cleanErrMsg);
+
+      // Return success: false because sendMail failed
+      res.status(500).json({
+        success: false,
+        sent: false,
+        bookingId: newRecord.id,
+        targetEmail,
+        message: `Không thể gửi email thông báo (${cleanErrMsg}). Đơn hàng đã được lưu lại hệ thống.`
       });
       return;
     }
 
-    // If SMTP failed or credentials missing
-    console.log(`[BOOKING RECORDED] Order ${newRecord.id} saved in server memory. Email status: ${emailError}`);
-    res.json({
-      success: true,
-      sent: false,
-      bookingId: newRecord.id,
-      targetEmail,
-      reason: "smtp_delivery_failed",
-      message: emailError ? `Không thể gửi tự động qua Gmail SMTP (${emailError}). Đơn đặt vẫn được lưu hệ thống.` : `Đơn đặt đã được lưu lại hệ thống.`
-    });
-
   } catch (error: any) {
-    console.error("Error in send-booking-email API:", error);
-    res.status(500).json({ success: false, message: "Lỗi máy chủ khi xử lý đơn hàng." });
+    const cleanError = (error?.message || "Lỗi máy chủ").replace(/(pass|password|auth)=([^\s&]+)/gi, "$1=***");
+    console.error("Error in POST /api/send-booking-email:", cleanError);
+    res.status(500).json({
+      success: false,
+      message: "Lỗi máy chủ khi xử lý đơn hàng."
+    });
   }
 });
 
