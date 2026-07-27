@@ -2,7 +2,6 @@ import "dotenv/config";
 import express from "express";
 import path from "path";
 import nodemailer from "nodemailer";
-import { createServer as createViteServer } from "vite";
 
 const app = express();
 const PORT = parseInt(process.env.PORT || "3000", 10);
@@ -304,6 +303,7 @@ app.post("/api/send-booking-email", async (req, res) => {
 async function startServer() {
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
