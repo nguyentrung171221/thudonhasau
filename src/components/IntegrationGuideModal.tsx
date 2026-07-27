@@ -68,7 +68,7 @@ export const IntegrationGuideModal: React.FC<IntegrationGuideModalProps> = ({ is
               activeTab === 'integrations' ? 'border-rose-500 text-rose-600 bg-white' : 'border-transparent hover:text-stone-900'
             }`}
           >
-            4. Kết Nối Google Sheets / Firebase
+            4. Tự Động Gửi Email & Sheets
           </button>
         </div>
 
@@ -147,44 +147,56 @@ export const IntegrationGuideModal: React.FC<IntegrationGuideModalProps> = ({ is
           )}
 
           {activeTab === 'integrations' && (
-            <div className="space-y-3 leading-relaxed">
+            <div className="space-y-4 leading-relaxed">
               <h4 className="font-bold text-stone-900 text-base flex items-center gap-2">
-                <FileSpreadsheet className="w-4 h-4 text-emerald-600" /> Kết nối Google Sheets & Firebase
+                <Mail className="w-4 h-4 text-rose-600" /> Cấu hình Tự động gửi Email về trantienky666@gmail.com
               </h4>
               
-              <p>Hiện tại khi khách gửi form, dữ liệu đã được lưu trực tiếp vào <code className="bg-stone-100 px-1 rounded font-mono">localStorage</code>. Hàm xử lý trung gian được đặt tại:</p>
-              <div className="bg-rose-50 p-2.5 rounded-xl border border-rose-200 font-mono text-rose-700 text-xs font-bold">
-                /src/utils/helpers.ts → hàm sendBookingToExternalIntegrations()
+              <div className="p-3.5 bg-rose-50 rounded-2xl border border-rose-200 text-xs text-stone-800 space-y-2">
+                <p className="font-semibold text-rose-800 flex items-center gap-1.5">
+                  <Sparkles className="w-4 h-4 text-rose-600" />
+                  Mã nguồn đã được nâng cấp Backend Express API (/api/send-booking-email) sẵn sàng gửi mail tự động!
+                </p>
+                <p>Để hệ thống tự động bắn email thông báo đơn mới tới email <strong className="text-stone-900">trantienky666@gmail.com</strong>, bạn chỉ cần cấu hình Mật khẩu ứng dụng Gmail (App Password):</p>
               </div>
 
-              <div className="space-y-3 pt-1 text-xs">
-                <div className="p-3 bg-stone-50 rounded-xl border border-stone-200 space-y-1">
-                  <span className="font-bold text-emerald-700 flex items-center gap-1">
-                    <FileSpreadsheet className="w-3.5 h-3.5" /> A. Kết nối Google Sheets (Miễn phí & Dễ nhất):
+              <div className="space-y-2.5 text-xs text-stone-700">
+                <div className="p-3 bg-stone-50 rounded-xl border border-stone-200 space-y-1.5">
+                  <span className="font-bold text-stone-900 flex items-center gap-1">
+                    1. Các bước lấy Mật khẩu ứng dụng từ Google (App Password):
                   </span>
-                  <p className="text-stone-600">Tạo một Google Apps Script gắn liền với file Google Sheets của bạn:</p>
-                  <pre className="bg-stone-900 text-stone-100 p-2.5 rounded-lg font-mono text-[10px] overflow-x-auto">
-{`function doPost(e) {
-  var data = JSON.parse(e.postData.contents);
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  sheet.appendRow([new Date(), data.fullName, data.phone, data.productName, data.region, data.formattedPrice]);
-  return ContentService.createTextOutput("Success");
-}`}
-                  </pre>
+                  <ol className="list-decimal list-inside space-y-1 pl-1 text-stone-600">
+                    <li>Vào tài khoản Gmail: <strong>myaccount.google.com</strong> → chọn <strong>Bảo mật (Security)</strong>.</li>
+                    <li>Bật <strong>Xác minh 2 bước (2-Step Verification)</strong>.</li>
+                    <li>Tìm từ khóa <strong>Mật khẩu ứng dụng (App Passwords)</strong> → Tạo một mật khẩu mới cho ứng dụng (ví dụ tên: <i>Thuê Đồ Nhà Sâu</i>).</li>
+                    <li>Google sẽ cấp 1 chuỗi 16 ký tự (ví dụ: <code className="bg-stone-200 px-1 py-0.5 rounded">abcd efgh ijkl mnop</code>).</li>
+                  </ol>
                 </div>
 
-                <div className="p-3 bg-stone-50 rounded-xl border border-stone-200 space-y-1">
-                  <span className="font-bold text-rose-700 flex items-center gap-1">
-                    <Database className="w-3.5 h-3.5" /> B. Kết nối Firebase Firestore:
+                <div className="p-3 bg-stone-50 rounded-xl border border-stone-200 space-y-1.5">
+                  <span className="font-bold text-stone-900 flex items-center gap-1">
+                    2. Điền Mật khẩu ứng dụng vào file .env của dự án:
                   </span>
-                  <p className="text-stone-600">Cài đặt SDK Firebase <code className="font-mono">npm install firebase</code> và gọi trong <code className="font-mono">helpers.ts</code>:</p>
-                  <pre className="bg-stone-900 text-stone-100 p-2.5 rounded-lg font-mono text-[10px] overflow-x-auto">
-{`import { collection, addDoc } from 'firebase/firestore';
-import { db } from './firebaseConfig';
-
-await addDoc(collection(db, "bookings"), booking);`}
+                  <pre className="bg-stone-900 text-stone-100 p-3 rounded-lg font-mono text-[11px] overflow-x-auto">
+{`SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_SECURE=true
+SMTP_USER=trantienky666@gmail.com
+SMTP_PASS=chuoi_mat_khau_16_ky_tu_google_cap
+NOTIFICATION_EMAIL=trantienky666@gmail.com`}
                   </pre>
+                  <p className="text-[11px] text-stone-500">
+                    Sau khi điền file <code className="font-mono text-rose-600 font-bold">.env</code>, khởi động lại server (<code className="font-mono text-stone-900 font-bold">npm run dev</code>). Mọi đơn hàng từ khách hàng sẽ ngay lập tức được gửi vào hòm thư <strong>trantienky666@gmail.com</strong>!
+                  </p>
                 </div>
+              </div>
+
+              <div className="pt-2 space-y-3">
+                <h4 className="font-bold text-stone-900 text-sm flex items-center gap-2">
+                  <FileSpreadsheet className="w-4 h-4 text-emerald-600" /> Tùy chọn 2: Kết nối Google Sheets (Nâng cao)
+                </h4>
+                
+                <p className="text-xs text-stone-600">Đơn hàng tự động lưu vào hệ thống và gửi qua Gmail SMTP. Nếu muốn đẩy thêm thông báo tùy chọn qua Webhook (Google Sheets/Make/Zapier), bạn có thể thêm <code className="font-mono">WEBHOOK_URL=...</code> trong file <code className="font-mono">.env</code> (biến này là <strong>không bắt buộc</strong>).</p>
               </div>
             </div>
           )}

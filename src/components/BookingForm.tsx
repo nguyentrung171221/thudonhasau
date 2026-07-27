@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PRODUCTS, STORE_INFO } from '../data/storeData';
 import { calculateRentalCalculation, saveBookingToLocalStorage, formatVND } from '../utils/helpers';
-import { Calendar, Clock, MapPin, CheckCircle2, AlertCircle, Camera, Sparkles, Send, FileText, ArrowRight, X } from 'lucide-react';
+import { Calendar, Clock, MapPin, CheckCircle2, AlertCircle, Camera, Sparkles, Send, FileText, ArrowRight, X, Mail, Copy, Check } from 'lucide-react';
 
 interface BookingFormProps {
   initialProductId?: string;
@@ -44,6 +44,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   const [formError, setFormError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedNotice, setSubmittedNotice] = useState<string | null>(null);
+  const [emailStatus, setEmailStatus] = useState<{ sent: boolean; message: string; targetEmail: string } | null>(null);
+  const [copied, setCopied] = useState(false);
 
   // Update initial product when prop changes
   useEffect(() => {
@@ -72,7 +74,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     returnTime
   );
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormError(null);
 
@@ -96,38 +98,80 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      // Save request to LocalStorage & external integration hooks
-      saveBookingToLocalStorage({
-        fullName: fullName.trim(),
-        phone: phone.trim(),
-        email: email.trim(),
-        productId: selectedProductId,
-        productName: selectedProduct.name,
-        region,
-        locationAddress,
-        pickupDate,
-        pickupTime,
-        returnDate,
-        returnTime,
-        rentalPlan,
-        calculatedDaysOrHoursText: calculation.durationSummary,
-        estimatedPrice: calculation.calculatedPrice,
-        formattedPrice: calculation.formattedPrice,
-        note: note.trim(),
-        agreedToPolicy: true
+    const bookingPayload = {
+      fullName: fullName.trim(),
+      phone: phone.trim(),
+      email: email.trim(),
+      productId: selectedProductId,
+      productName: selectedProduct.name,
+      region,
+      locationAddress,
+      pickupDate,
+      pickupTime,
+      returnDate,
+      returnTime,
+      rentalPlan,
+      calculatedDaysOrHoursText: calculation.durationSummary,
+      estimatedPrice: calculation.calculatedPrice,
+      formattedPrice: calculation.formattedPrice,
+      note: note.trim(),
+      agreedToPolicy: true
+    };
+
+    // Save locally
+    saveBookingToLocalStorage(bookingPayload);
+
+    // Call API to send email
+    try {
+      const res = await fetch('/api/send-booking-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(bookingPayload)
       });
+      const data = await res.json();
 
-      setIsSubmitting(false);
-      setSubmittedNotice(
-        'Yêu cầu đặt lịch đã được ghi nhận. Thuê đồ nhà Sâu sẽ liên hệ để kiểm tra lịch trống và xác nhận đơn thuê trong thời gian sớm nhất.'
-      );
-
-      if (onSuccess) {
-        onSuccess();
+      if (data.success) {
+        setEmailStatus({
+          sent: data.sent,
+          message: data.message || `Đơn đã được gửi về email ${data.targetEmail}`,
+          targetEmail: data.targetEmail || 'trantienky666@gmail.com'
+        });
+      } else {
+        setEmailStatus({
+          sent: false,
+          message: data.message || 'Lưu đơn thành công, đang chờ gửi mail.',
+          targetEmail: 'trantienky666@gmail.com'
+        });
       }
-    }, 600);
+    } catch (err) {
+      console.error('Lỗi khi gửi API email:', err);
+      setEmailStatus({
+        sent: false,
+        message: 'Đã lưu đơn đặt lịch. Cửa hàng sẽ liên hệ xác nhận qua SĐT trong 15-30 phút.',
+        targetEmail: 'trantienky666@gmail.com'
+      });
+    }
+
+    setIsSubmitting(false);
+    setSubmittedNotice(
+      'Yêu cầu đặt lịch đã được ghi nhận. Thuê đồ nhà Sâu sẽ liên hệ để kiểm tra lịch trống và xác nhận đơn thuê trong thời gian sớm nhất.'
+    );
+
+    if (onSuccess) {
+      onSuccess();
+    }
   };
+
+  const copyOrderSummary = () => {
+    const text = `📋 ĐƠN ĐẶT THUÊ MÁY ÁNH - THUÊ ĐỒ NHÀ SÂU\n- Khách hàng: ${fullName}\n- SĐT: ${phone}\n- Email: ${email || 'Không'}\n- Máy thuê: ${selectedProduct.name}\n- Nhận tại: ${region} (${locationAddress})\n- Thời gian: ${pickupDate} (${pickupTime}) -> ${returnDate} (${returnTime})\n- Giá dự kiến: ${calculation.formattedPrice}\n- Ghi chú: ${note || 'Không'}`;
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const mailToLink = `mailto:trantienky666@gmail.com?subject=${encodeURIComponent(`[Đơn đặt thuê] ${fullName} - ${phone}`)}&body=${encodeURIComponent(
+    `Họ tên: ${fullName}\nSĐT: ${phone}\nEmail: ${email}\nMáy thuê: ${selectedProduct.name}\nThời gian: ${pickupDate} (${pickupTime}) đến ${returnDate} (${returnTime})\nDự kiến giá: ${calculation.formattedPrice}\nGhi chú: ${note}`
+  )}`;
 
   return (
     <div id="dat-lich" className="bg-white rounded-3xl border border-rose-100 shadow-soft p-6 sm:p-8 md:p-10 relative">
@@ -171,6 +215,18 @@ export const BookingForm: React.FC<BookingFormProps> = ({
             “{submittedNotice}”
           </p>
 
+          {/* Email Notification Status Box */}
+          <div className="p-3.5 bg-rose-50/80 rounded-2xl border border-rose-200 text-xs text-rose-900 max-w-md mx-auto text-left space-y-1">
+            <div className="font-semibold flex items-center gap-1.5 text-rose-800">
+              <Mail className="w-4 h-4 text-rose-600 shrink-0" />
+              <span>Email thông báo nhận đơn:</span>
+              <strong className="text-stone-900 underline">{emailStatus?.targetEmail || 'trantienky666@gmail.com'}</strong>
+            </div>
+            <p className="text-[11px] text-stone-600 font-normal leading-normal">
+              {emailStatus?.message}
+            </p>
+          </div>
+
           <div className="p-4 bg-white rounded-2xl border border-emerald-100 text-xs text-stone-600 max-w-md mx-auto text-left space-y-1.5 shadow-2xs">
             <div className="font-semibold text-stone-900 border-b pb-1">Tóm tắt yêu cầu thuê:</div>
             <div>• <strong>Máy thuê:</strong> {selectedProduct.name}</div>
@@ -181,6 +237,31 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
             <button
+              onClick={copyOrderSummary}
+              className="px-5 py-2.5 bg-white border border-stone-300 text-stone-800 text-xs font-semibold rounded-xl hover:bg-stone-50 transition-colors flex items-center gap-1.5 cursor-pointer"
+            >
+              {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4 text-stone-500" />}
+              <span>{copied ? 'Đã sao chép đơn' : 'Sao chép thông tin đơn'}</span>
+            </button>
+
+            <a
+              href={mailToLink}
+              className="px-5 py-2.5 bg-rose-100 hover:bg-rose-200 text-rose-800 text-xs font-semibold rounded-xl transition-colors flex items-center gap-1.5"
+            >
+              <Mail className="w-4 h-4 text-rose-600" />
+              <span>Gửi qua Mail (mở ứng dụng Mail)</span>
+            </a>
+
+            <a
+              href={`tel:${STORE_INFO.phones[0].replace(/\s+/g, '')}`}
+              className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-xl transition-colors flex items-center gap-1.5"
+            >
+              Gọi hotline: {STORE_INFO.phones[0]}
+            </a>
+          </div>
+
+          <div className="pt-2">
+            <button
               onClick={() => {
                 setSubmittedNotice(null);
                 setFullName('');
@@ -188,17 +269,10 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 setEmail('');
                 setNote('');
               }}
-              className="px-6 py-2.5 bg-white border border-stone-300 text-stone-800 text-xs font-semibold rounded-xl hover:bg-stone-50 transition-colors"
+              className="text-xs text-rose-600 font-medium hover:underline cursor-pointer"
             >
-              Đặt đơn mới
+              + Đặt thêm đơn thuê mới
             </button>
-
-            <a
-              href={`tel:${STORE_INFO.phones[0].replace(/\s+/g, '')}`}
-              className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-xl transition-colors flex items-center gap-1.5"
-            >
-              Gọi hotline hỗ trợ ngay: {STORE_INFO.phones[0]}
-            </a>
           </div>
         </div>
       ) : (
