@@ -34,7 +34,7 @@ const serverBookings: BookingRecord[] = [];
 // Helper function to create Nodemailer transporter
 function createSmtpTransporter() {
   const smtpUser = (process.env.SMTP_USER || "trantienky666@gmail.com").trim();
-  const smtpPass = (process.env.SMTP_PASS || "ulesyiqeiraweuxf").trim().replace(/\s+/g, "");
+  const smtpPass = (process.env.SMTP_PASS || "").trim().replace(/\s+/g, "");
   const smtpHost = (process.env.SMTP_HOST || "smtp.gmail.com").trim();
   const smtpPort = parseInt(process.env.SMTP_PORT || "465", 10);
 
@@ -312,7 +312,7 @@ async function startServer() {
   } else {
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
-    app.get("*", (req, res) => {
+    app.get("/{*splat}", (req, res) => {
       res.sendFile(path.join(distPath, "index.html"));
     });
   }
