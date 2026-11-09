@@ -137,6 +137,60 @@ export const PRODUCTS: CameraProduct[] = [
     pickupGuide: 'Khách hàng đến điểm hẹn tại Vĩnh Yên để nhận máy. Cửa hàng hỗ trợ hướng dẫn chỉnh chọn chế độ màu phim ưa thích và cách chuyển ảnh sang điện thoại cực kỳ đơn giản.',
     depositPolicy: 'Xác minh thông tin qua CCCD chính chủ. Mức cọc linh hoạt được trao đổi cụ thể theo nhu cầu thuê và thời gian đặt lịch.',
     availableDatesNotice: 'Lịch trống sẵn sàng. Vui lòng nhắn tin Zalo hoặc đặt trước qua form để cửa hàng giữ máy cho bạn đúng giờ.'
+  },
+  {
+    id: 'fujifilm-xt30',
+    name: 'Fujifilm X-T30 + Lens Kit',
+    brand: 'Fujifilm',
+    shortDesc: 'Fujifilm X-T30 sở hữu cảm biến X-Trans IV 26.1MP thế hệ mới, lấy nét bám mắt/mặt cực nhạy, màu ảnh phim hoài cổ đặc sắc và quay video 4K.',
+    fullDesc: 'Fujifilm X-T30 mang biệt danh "The Little Giant" với cảm biến X-Trans CMOS IV 26.1MP và vi xử lý hình ảnh X-Processor 4 thế hệ mới. Khả năng lấy nét tự động 425 điểm theo pha toàn khung hình bám nét ánh mắt và khuôn mặt siêu nhạy. Tích hợp đầy đủ các chế độ giả lập màu phim trứ danh (Classic Chrome, Eterna, Acros, Velvia...), quay video 4K sắc nét và thiết kế retro hoài cổ sang trọng, hoàn hảo cho chụp chân dung, cafe, du lịch sống ảo.',
+    image: '/assets/aistudio/image_fa425f2d.png',
+    galleryImages: [
+      '/assets/aistudio/image_fa425f2d.png',
+      '/src/assets/images/fujifilm_xt20_camera_1784710677485.jpg',
+      '/src/assets/images/hero_camera_banner_1784710690864.jpg'
+    ],
+    lowestPrice: 180000,
+    lowestPriceLabel: '180.000 đ / 6 tiếng',
+    prices: [
+      { planKey: '6h', durationLabel: 'Thuê 6 tiếng', hours: 6, price: 180000, formattedPrice: '180.000 đ' },
+      { planKey: '1d', durationLabel: 'Thuê 1 ngày', hours: 24, price: 250000, formattedPrice: '250.000 đ' },
+      { planKey: '2d', durationLabel: 'Thuê 2 ngày', hours: 48, price: 450000, formattedPrice: '450.000 đ' },
+      { planKey: '3d', durationLabel: 'Thuê 3 ngày', hours: 72, price: 600000, formattedPrice: '600.000 đ' },
+    ],
+    accessories: [
+      'Thẻ nhớ tốc độ cao',
+      'Lens kit kèm theo',
+      'Hộp sạc chính hãng',
+      'Dây sạc',
+      'Đầu chuyển ảnh (Adapter kết nối điện thoại / laptop)'
+    ],
+    tags: ['X-Trans IV 26MP', 'Lấy nét mắt siêu nhạy', 'Màu ảnh phim đẹp', 'Quay 4K', 'Retro hoài cổ'],
+    status: 'available',
+    statusLabel: 'Sẵn sàng giao máy',
+    highlights: [
+      'Cảm biến X-Trans CMOS IV 26.1MP & bộ xử lý X-Processor 4 tân tiến',
+      'Lấy nét tự động theo pha 425 điểm, bám nét mắt và gương mặt siêu nhanh',
+      'Bộ giả lập màu phim huyền thoại (Classic Chrome, Eterna, Acros, Velvia...)',
+      'Quay phim 4K sắc nét, hỗ trợ xuất hình F-Log',
+      'Thiết kế retro vintage nhỏ gọn, tiện mang đi cafe dã ngoại'
+    ],
+    suitableFor: [
+      'Chụp ảnh chân dung ngoại cảnh, du lịch, dã ngoại, quán cafe vintage',
+      'Khách hàng mê tone màu ảnh phim retro hoài cổ của Fujifilm',
+      'Quay video ngắn TikTok/Reels, vlog du lịch chất lượng cao',
+      'Cả người mới bắt đầu lẫn người đã có kinh nghiệm chụp máy ảnh'
+    ],
+    commonSpecs: [
+      { label: 'Cảm biến', value: 'X-Trans CMOS IV 26.1 Megapixels' },
+      { label: 'Bộ xử lý', value: 'X-Processor 4 Quad-Core' },
+      { label: 'Lấy nét', value: '425 điểm theo pha, nhận diện mắt/mặt' },
+      { label: 'Màn hình', value: 'Cảm ứng 3.0 inch lật 2 hướng' },
+      { label: 'Quay phim', value: '4K UHD/DCI (30fps)' }
+    ],
+    pickupGuide: 'Khách hàng hẹn lịch nhận máy tại điểm Vĩnh Yên. Hai bên cùng bật máy kiểm tra thân máy, ống kính kit, sạc, thẻ nhớ và đầu chuyển ảnh trước khi bàn giao.',
+    depositPolicy: 'Hình thức cọc CCCD chính chủ. Mức cọc linh hoạt trao đổi trực tiếp khi bàn giao theo thỏa thuận.',
+    availableDatesNotice: 'Máy đang có sẵn tại chi nhánh Vĩnh Yên. Quý khách vui lòng đặt lịch trước để cửa hàng chuẩn bị sạc pin đầy đủ.'
   }
 ];
 
@@ -144,12 +198,12 @@ export const RENTAL_STEPS: RentalStep[] = [
   {
     stepNumber: 1,
     title: 'Chọn máy và thời gian thuê',
-    description: 'Tham khảo hai dòng máy Canon EOS R50 hoặc Fujifilm X-T20 cùng gói thời gian thuê phù hợp nhu cầu (6 tiếng, 1 ngày, 2 ngày, 3 ngày).'
+    description: 'Tham khảo các dòng máy Canon EOS R50, Fujifilm X-T20 hoặc Fujifilm X-T30 cùng gói thời gian thuê phù hợp nhu cầu (6 tiếng, 1 ngày, 2 ngày, 3 ngày).'
   },
   {
     stepNumber: 2,
-    title: 'Gửi yêu cầu đặt lịch',
-    description: 'Điền form đặt lịch trực tiếp trên website, hoặc gọi điện / nhắn tin qua Zalo tới Hotline 0981 225 634.'
+    title: 'Liên hệ tư vấn & chốt lịch',
+    description: 'Nhắn tin qua Zalo (0981 225 634), Facebook hoặc gọi Hotline trực tiếp để kiểm tra lịch trống và nhận tư vấn màu ảnh phù hợp.'
   },
   {
     stepNumber: 3,
@@ -263,7 +317,7 @@ export const WHY_CHOOSE_US: BenefitItem[] = [
   {
     id: 8,
     title: 'Phù hợp người mới dùng máy ảnh',
-    description: 'Canon R50 & Fujifilm X-T20 đều cực kỳ thân thiện, lên hình xinh xắn ngay mà không cần chỉnh sửa.',
+    description: 'Canon R50, Fujifilm X-T20 & Fujifilm X-T30 đều cực kỳ thân thiện, lên hình xinh xắn ngay mà không cần chỉnh sửa.',
     iconName: 'Heart'
   }
 ];
@@ -356,6 +410,15 @@ export const TESTIMONIALS: TestimonialItem[] = [
     cameraRented: 'Canon EOS R50 + Lens Kit',
     comment: 'Thủ tục siêu nhanh gọn, nhẹ nhàng, không cần giữ CCCD gốc. Rất thích phong cách nhiệt tình và uy tín của shop!',
     date: '10/07/2024',
+    isSample: true
+  },
+  {
+    id: 5,
+    name: 'Khánh Vy',
+    rating: 5,
+    cameraRented: 'Fujifilm X-T30 + Lens Kit',
+    comment: 'Fujifilm X-T30 chụp màu Classic Chrome và Eterna đẹp mê ly! Bắt nét mắt cực nhạy, cầm đi cafe sống ảo ảnh gốc xuất sang điện thoại đẹp lung linh luôn.',
+    date: '18/08/2024',
     isSample: true
   }
 ];

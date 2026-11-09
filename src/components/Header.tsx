@@ -4,11 +4,9 @@ import { STORE_INFO } from '../data/storeData';
 
 interface HeaderProps {
   onOpenBooking: (productId?: string) => void;
-  onOpenHistory: () => void;
-  activeBookingsCount: number;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenHistory, activeBookingsCount }) => {
+export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -70,7 +68,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenHistory, ac
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-3.5 xl:gap-5 text-xs xl:text-sm font-medium text-stone-700 whitespace-nowrap">
+          <nav className="hidden lg:flex items-center gap-3 xl:gap-4 text-xs xl:text-sm font-medium text-stone-700 whitespace-nowrap">
             <a href="#trang-chu" onClick={scrollToSection('trang-chu')} className="hover:text-rose-600 transition-colors py-1">
               Trang chủ
             </a>
@@ -80,11 +78,17 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenHistory, ac
             <a href="#bang-gia" onClick={scrollToSection('bang-gia')} className="hover:text-rose-600 transition-colors py-1">
               Bảng giá
             </a>
+            <a href="#mau-anh" onClick={scrollToSection('mau-anh')} className="hover:text-rose-600 transition-colors py-1 font-semibold text-rose-700">
+              Mẫu ảnh đẹp
+            </a>
+            <a href="#goc-chup" onClick={scrollToSection('goc-chup')} className="hover:text-rose-600 transition-colors py-1 font-semibold text-amber-700">
+              Góc chụp đẹp
+            </a>
+            <a href="#huong-dan" onClick={scrollToSection('huong-dan')} className="hover:text-rose-600 transition-colors py-1">
+              Hướng dẫn dùng
+            </a>
             <a href="#quy-trinh" onClick={scrollToSection('quy-trinh')} className="hover:text-rose-600 transition-colors py-1">
               Quy trình thuê
-            </a>
-            <a href="#chinh-sach" onClick={scrollToSection('chinh-sach')} className="hover:text-rose-600 transition-colors py-1">
-              Chính sách
             </a>
             <a href="#faq" onClick={scrollToSection('faq')} className="hover:text-rose-600 transition-colors py-1">
               Hỏi đáp
@@ -96,23 +100,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenHistory, ac
 
           {/* Action Buttons */}
           <div className="hidden lg:flex items-center gap-2.5 shrink-0 whitespace-nowrap">
-            <button
-              onClick={onOpenHistory}
-              className="relative px-3 py-1.5 text-stone-700 hover:text-rose-600 hover:bg-rose-50 rounded-full transition-colors flex items-center gap-1.5 text-xs font-semibold cursor-pointer shrink-0"
-              title="Xem lịch sử đặt máy đã lưu"
-            >
-              <ReceiptText className="w-4 h-4 text-rose-500 shrink-0" />
-              <span className="whitespace-nowrap">Đơn đã lưu</span>
-              {activeBookingsCount > 0 && (
-                <span className="bg-rose-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                  {activeBookingsCount}
-                </span>
-              )}
-            </button>
-
             <a
               href={`tel:${STORE_INFO.phones[0].replace(/\s+/g, '')}`}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 rounded-full transition-colors border border-rose-200/80 whitespace-nowrap shrink-0"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 rounded-full transition-colors border border-rose-200/80 whitespace-nowrap shrink-0"
             >
               <Phone className="w-3.5 h-3.5 shrink-0" />
               <span>{STORE_INFO.phones[0]}</span>
@@ -123,23 +113,18 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenHistory, ac
               className="px-4 py-2 text-xs font-semibold text-white bg-gradient-to-r from-rose-500 via-rose-400 to-pink-400 hover:from-rose-600 hover:to-pink-500 rounded-full shadow-xs hover:shadow-md transition-all transform hover:-translate-y-0.5 flex items-center gap-1.5 whitespace-nowrap cursor-pointer shrink-0"
             >
               <Calendar className="w-3.5 h-3.5 shrink-0" />
-              <span>Đặt lịch ngay</span>
+              <span>Tư vấn & Đặt lịch</span>
             </button>
           </div>
 
           {/* Mobile menu button */}
           <div className="flex lg:hidden items-center gap-2 shrink-0">
-            <button
-              onClick={onOpenHistory}
-              className="relative p-2 text-rose-600 bg-rose-50 rounded-full cursor-pointer"
+            <a
+              href={`tel:${STORE_INFO.phones[0].replace(/\s+/g, '')}`}
+              className="p-2 text-rose-600 bg-rose-50 rounded-full"
             >
-              <ReceiptText className="w-5 h-5" />
-              {activeBookingsCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-rose-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                  {activeBookingsCount}
-                </span>
-              )}
-            </button>
+              <Phone className="w-4 h-4" />
+            </a>
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -168,14 +153,35 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenHistory, ac
               onClick={scrollToSection('thiet-bi')}
               className="py-2 text-stone-800 font-medium hover:text-rose-600 border-b border-stone-100"
             >
-              Thiết bị & Bảng giá
+              Thiết bị máy ảnh
             </a>
             <a
               href="#bang-gia"
               onClick={scrollToSection('bang-gia')}
               className="py-2 text-stone-800 font-medium hover:text-rose-600 border-b border-stone-100"
             >
-              So sánh giá thuê
+              Bảng giá niêm yết
+            </a>
+            <a
+              href="#mau-anh"
+              onClick={scrollToSection('mau-anh')}
+              className="py-2 text-rose-600 font-semibold border-b border-stone-100"
+            >
+              Mẫu ảnh chụp thực tế
+            </a>
+            <a
+              href="#goc-chup"
+              onClick={scrollToSection('goc-chup')}
+              className="py-2 text-amber-700 font-semibold border-b border-stone-100"
+            >
+              Hướng dẫn lấy góc chụp (Cafe, Kỷ yếu)
+            </a>
+            <a
+              href="#huong-dan"
+              onClick={scrollToSection('huong-dan')}
+              className="py-2 text-stone-800 font-medium hover:text-rose-600 border-b border-stone-100"
+            >
+              Hướng dẫn dùng máy ảnh
             </a>
             <a
               href="#quy-trinh"
@@ -215,7 +221,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenHistory, ac
                 className="w-full py-3 bg-gradient-to-r from-rose-500 to-amber-400 text-white font-bold rounded-2xl shadow-md flex items-center justify-center gap-2 text-sm"
               >
                 <Calendar className="w-4 h-4" />
-                Đặt lịch ngay
+                Tư vấn & Đặt lịch
               </button>
 
               <a

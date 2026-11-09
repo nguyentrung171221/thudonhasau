@@ -118,8 +118,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 }}
                 className="w-full sm:flex-1 py-3.5 px-6 rounded-2xl bg-gradient-to-r from-rose-500 via-rose-400 to-amber-400 hover:from-rose-600 hover:to-amber-500 text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
-                <Calendar className="w-4 h-4" />
-                Đặt thuê máy này ngay
+                <MessageCircle className="w-4 h-4" />
+                Tư vấn & Đặt thuê máy này
               </button>
 
               <a
@@ -257,9 +257,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   onClose();
                   onBookNow(product.id);
                 }}
-                className="w-1/2 sm:w-auto px-6 py-3 rounded-2xl bg-gradient-to-r from-rose-500 to-amber-400 text-white font-bold text-xs shadow-md hover:shadow-lg transition-all"
+                className="w-1/2 sm:w-auto px-6 py-3 rounded-2xl bg-gradient-to-r from-rose-500 to-amber-400 text-white font-bold text-xs shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer"
               >
-                Đặt lịch máy này
+                <MessageCircle className="w-4 h-4" />
+                Tư vấn máy này
               </button>
             </div>
           </div>

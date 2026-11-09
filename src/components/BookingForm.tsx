@@ -294,7 +294,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
               <Camera className="w-4 h-4 text-rose-500" /> 1. Chọn máy ảnh muốn thuê <span className="text-rose-500">*</span>
             </label>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {PRODUCTS.map((prod) => (
                 <div
                   key={prod.id}

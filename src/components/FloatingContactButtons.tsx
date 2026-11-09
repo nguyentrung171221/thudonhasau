@@ -17,13 +17,13 @@ export const FloatingContactButtons: React.FC<FloatingContactButtonsProps> = ({ 
       {/* Stacked Action Buttons */}
       <div className="pointer-events-auto flex flex-col items-end gap-2.5">
         
-        {/* Quick Booking Button */}
+        {/* Quick Consultation Button */}
         <button
           onClick={onOpenBooking}
           className="px-4 py-2.5 bg-gradient-to-r from-rose-500 to-amber-400 text-white rounded-full shadow-lg hover:shadow-xl font-bold text-xs flex items-center gap-2 transform hover:scale-105 transition-all cursor-pointer"
         >
-          <Calendar className="w-4 h-4" />
-          <span className="hidden sm:inline">Đặt lịch ngay</span>
+          <MessageCircle className="w-4 h-4" />
+          <span className="hidden sm:inline">Tư vấn & Giữ máy</span>
         </button>
 
         {/* Facebook Floating Button */}

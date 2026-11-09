@@ -147,8 +147,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               onClick={() => onBookNow(product.id)}
               className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-rose-500 to-amber-400 hover:from-rose-600 hover:to-amber-500 text-white font-bold text-xs shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer"
             >
-              <Calendar className="w-3.5 h-3.5" />
-              Đặt thuê ngay
+              <MessageCircle className="w-3.5 h-3.5" />
+              Tư vấn & Đặt thuê
             </button>
           </div>
 
